@@ -1,50 +1,32 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
+    root to: "homes#top"
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :tags, only: [:index, :create, :edit, :update, :destroy]
+    resources :posts, only: [:index, :show]
+    resources :articles, only: [:index, :new, :create, :show, :edit, :update]
   end
-  namespace :admin do
-    get 'tags/index'
-    get 'tags/edit'
-  end
-  namespace :admin do
-    get 'posts/index'
-    get 'posts/show'
-  end
-  namespace :admin do
-    get 'articles/index'
-    get 'articles/new'
-    get 'articles/show'
-    get 'articles/edit'
-  end
+
   namespace :public do
-    get 'tags/index'
-    get 'tags/edit'
+    root to: "homes#top"
+    get "about" => "homes#about"
+    resources :tags, only: [:index, :create, :edit, :update, :destroy]
+    resources :notifications, only: [:index, :show, :update]
+    resources :favorites, only: [:index, :show, :create, :update, :destroy]
+    resources :posts, only: [:index, :new, :create, :show, :edit, :update]
+    resources :users, only: [:show, :edit, :update]
+      get "users/mypage" => "users#show"
+    resources :articles, only: [:index, :show]
   end
-  namespace :public do
-    get 'notifications/index'
-    get 'notifications/show'
-  end
-  namespace :public do
-    get 'favorites/index'
-    get 'favorites/show'
-  end
-  namespace :public do
-    get 'posts/index'
-    get 'posts/new'
-    get 'posts/show'
-    get 'posts/edit'
-  end
-  namespace :public do
-    get 'users/show'
-    get 'users/edit'
-  end
-  namespace :public do
-    get 'articles/index'
-    get 'articles/show'
-  end
-  devise_for :users
-  devise_for :admins
+
+  devise_for :user,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+  }
+
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+  }
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
