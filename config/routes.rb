@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
+
   namespace :admin do
     root to: "homes#top"
     resources :users, only: [:index, :show, :edit, :update]
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
+    resources :notifications, only: [:create, :index] do
+      post 'deliver', on: :collection
+    end
     resources :posts, only: [:index, :show]
     resources :articles, only: [:index, :new, :create, :show, :edit, :update]
   end
 
-  namespace :public do
+  scope module: :public do
     root to: "homes#top"
     get "about" => "homes#about"
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
@@ -19,7 +23,7 @@ Rails.application.routes.draw do
     resources :articles, only: [:index, :show]
   end
 
-  devise_for :user,skip: [:passwords], controllers: {
+  devise_for :public,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
   }
