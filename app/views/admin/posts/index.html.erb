@@ -1,2 +1,10 @@
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
+<div class="container">
+  <h3>投稿一覧</h3>
+
+  <% @posts.each do |post| %>
+
+    <h5>タイトル</h5>
+    <span><%= link_to post.title, post_path(post.id) %></span>
+
+  <% end %>
+</div>
