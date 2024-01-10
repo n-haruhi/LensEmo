@@ -9,4 +9,6 @@
 
   <h5>本文</h5>
   <P><%= @post.body %></P>
+
+  <%= link_to "編集", edit_post_path(@post.id) %>
 </div>

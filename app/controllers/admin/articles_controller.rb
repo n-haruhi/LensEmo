@@ -22,9 +22,13 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def edit
+    @article = Article.find(params[:id])
   end
 
   def update
+    article = Article.find(params[:id])
+    article.update(list_params)
+    redirect_to article_path(article.id)
   end
 
   private
