@@ -1,3 +1,20 @@
-<h3>ユーザー側トップページ</h3>
+<div class="container">
+  <h3>ユーザー側トップページ</h3>
 
-<a>ようこそ！<strong>LensEmo</strong>へ</a>
+  <a>ようこそ！<strong>LensEmo</strong>へ</a>
+
+    <div class="d-grid gap-2 col-10 text-center">
+      <button class="btn btn-sm mb-3 btn-block btn-info">
+        <%= link_to "Log in", new_user_session_path, class: 'nav-link text-white' %>
+      </button>
+
+      <button class="btn btn-sm btn-block btn-success">
+        <%= link_to "Sign up", new_user_registration_path, class: 'nav-link text-white' %>
+      </button>
+
+      <button class="btn btn-sm mb-3 btn-block btn-danger">
+        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link text-white' %>
+      </button>
+
+    </div>
+</div>

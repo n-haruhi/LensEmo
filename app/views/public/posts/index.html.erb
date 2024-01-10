@@ -1,8 +1,10 @@
-<h3>投稿一覧</h3>
+<div class="container">
+  <h3>投稿一覧</h3>
 
-<% @posts.each do |post| %>
+  <% @posts.each do |post| %>
 
-  <h5>タイトル</h5>
-  <span><%= post.title %></span>
+    <h5>タイトル</h5>
+    <span><%= link_to post.title, post_path(post.id) %></span>
 
-<% end %>
+  <% end %>
+</div>

@@ -18,13 +18,22 @@ Rails.application.routes.draw do
     resources :notifications, only: [:index, :show, :update]
     resources :favorites, only: [:index, :show, :create, :update, :destroy]
     resources :posts, only: [:index, :new, :create, :show, :edit, :update]
-    resources :users, only: [:show, :edit, :update]
-      get "users/mypage" => "users#show"
+    resources :users, only: [:edit, :update]
+      get "users/mypage" => "users#show", as: :users_mypage
     resources :articles, only: [:index, :show]
   end
 
-  devise_for :user
-  devise_for :admin
+  devise_for :users, skip: [:passwords],
+    controllers: {
+      registrations: "public/registrations",
+      sessions: 'public/sessions'
+    }
+
+  devise_for :admin, skip: [:registrations, :passwords] ,
+    controllers: {
+      sessions: "admin/sessions"
+    }
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

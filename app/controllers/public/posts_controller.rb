@@ -12,10 +12,12 @@ class Public::PostsController < ApplicationController
   def create
     # データを受け取り新規登録するためのインスタンス作成
     @post = Post.new(post_params)
-    # データをデータベースに保存するためのsaveメソッドを実行
-    @post.save
-    # 投稿一覧画面へリダイレクト
-    redirect_to posts_path
+    if @post.save
+      redirect_to post_path(post.id), notice: "投稿成功しました。"
+    else
+      @posts = Post.all
+      render 'index'
+    end
   end
 
   def show
@@ -30,12 +32,9 @@ class Public::PostsController < ApplicationController
   end
 
   private
-  # ストロングパラメータ
+
   def post_params
-    # formから送られるデータをparamsの中に入れる
-    # その中からrequireでモデル名を指定しデータを絞り込む。
-    # 絞り込んだデータの中から保存を許可するカラムを指定。
-    params.require(:post).permit(:title, :emotion, :body)
+    params.require(:post).permit(:title, { emotion: [] }, :body)
   end
 
 end
