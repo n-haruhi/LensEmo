@@ -17,6 +17,8 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_user_path(user.id)
   end
 
+  private
+
   def user_params
     params.require(:user).permit(:username, :email, :avatar)
   end

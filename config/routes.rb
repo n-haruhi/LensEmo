@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
 
+  # adminのルーティングをnamespaceでまとめる
   namespace :admin do
     root to: "homes#top"
     resources :users, only: [:index, :show, :edit, :update]
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
-    resources :notifications, only: [:create, :index] do
+
+    # notificationsリソースに対してdeliverという名前のアクションを生成する
+    # このアクションはcollectionに対してPOSTリクエストが送られた場合に呼び出される
+    resources :notifications, only: [:new, :create, :send, :show, :index] do
       post 'deliver', on: :collection
     end
+
+    resources :favorites, only: [:index, :show, :update, :destroy]
     resources :posts, only: [:index, :show]
     resources :articles, only: [:index, :new, :create, :show, :edit, :update]
   end
@@ -16,7 +22,7 @@ Rails.application.routes.draw do
     get "about" => "homes#about"
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
     resources :notifications, only: [:index, :show, :update]
-    resources :favorites, only: [:index, :show, :create, :update, :destroy]
+    resources :favorites, only: [:create, :destroy]
     resources :posts, only: [:index, :new, :create, :show, :edit, :update]
     resources :users, only: [:edit, :update]
       get "users/mypage" => "users#show", as: :users_mypage
@@ -33,7 +39,6 @@ Rails.application.routes.draw do
     controllers: {
       sessions: "admin/sessions"
     }
-
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
