@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
   end
 
   def edit
@@ -9,7 +9,7 @@ class Public::UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    user.update(user_params)
+    user.updateのshow(user_params)
     redirect_to user_path(user.id) # 自身のマイページ(show)へ
   end
 

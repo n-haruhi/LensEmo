@@ -1,11 +1,6 @@
 <div class="container">
   <h3>投稿詳細</h3>
 
-  <%= image_tag @post.get_image %>
-
-  <h5>プロフィール画像</h5>
-  <p><%= image_tag @post.user.get_profile_image(100,100) %></p>
-
   <h5>ユーザー名</h5>
   <p><%= @post.user.username %></p>
 
@@ -20,20 +15,6 @@
 
   <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
 
-  <!-- いいね機能 -->
-  <% if @post.favorited_by?(current_user) %>
-    <p>
-      <%= link_to post_favorite_path(@post), method: :delete do %>
-        ♥<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_favorite_path(@post), method: :post do %>
-        ♡<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
 
   <!-- ログインしているユーザーと一致していたらボタンを表示 -->
   <% if @post.user == current_user %>
