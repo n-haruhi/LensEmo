@@ -1,7 +1,14 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h3>管理者トップページ</h3>
-    </div>
+  <h3>管理者トップページ</h3>
+
+  <!-- 仮のボタン -->
+  <div class="text-center">
+    <button class="btn btn-sm mb-3 btn-block btn-info">
+      <%= link_to "Log in", new_admin_session_path, class: 'nav-link text-white' %>
+    </button>
+
+    <button class="btn btn-sm mb-3 btn-block btn-danger">
+      <%= link_to "Log out", destroy_admin_session_path, method: :delete, class: 'nav-link text-white' %>
+    </button>
   </div>
 </div>

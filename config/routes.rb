@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       post 'deliver', on: :collection
     end
 
-    resources :favorites, only: [:index, :show, :update, :destroy]
+    resources :favorites, only: [:index, :show, :destroy]
     resources :posts, only: [:index, :show]
     resources :articles, only: [:index, :new, :create, :show, :edit, :update]
   end
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   devise_for :admin, skip: [:registrations, :passwords] ,
     controllers: {
-      sessions: "admin/sessions"
+      sessions: 'admin/sessions'
     }
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
