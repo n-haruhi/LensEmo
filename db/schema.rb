@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_11_102838) do
+ActiveRecord::Schema.define(version: 2024_01_12_133442) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -91,13 +91,13 @@ ActiveRecord::Schema.define(version: 2024_01_11_102838) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
-  create_table "post_tags", force: :cascade do |t|
+  create_table "post_tag_relations", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_post_tags_on_post_id"
-    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
+    t.index ["post_id"], name: "index_post_tag_relations_on_post_id"
+    t.index ["tag_id"], name: "index_post_tag_relations_on_tag_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -137,6 +137,6 @@ ActiveRecord::Schema.define(version: 2024_01_11_102838) do
   add_foreign_key "notifications", "favorites"
   add_foreign_key "notifications", "posts"
   add_foreign_key "notifications", "users"
-  add_foreign_key "post_tags", "posts"
-  add_foreign_key "post_tags", "tags"
+  add_foreign_key "post_tag_relations", "posts"
+  add_foreign_key "post_tag_relations", "tags"
 end
