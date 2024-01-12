@@ -2,6 +2,15 @@
   <!-- この一覧にカレンダー入れたい -->
   <h3>投稿一覧</h3>
 
+  <!-- タグ検索。タグ検索用の情報を送信する項目。タグが複数でも検索可能に-->
+  <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+      <% Tag.all.each do |t| %>
+        <%= check_box :tag_ids, t.name %><%= t.name %>
+      <% end %>
+      <%= submit_tag '検索' %>
+  <% end %>
+
+  <!-- DBに保存されている投稿を全て表示 -->
   <% @posts.each do |post| %>
 
     <h5>タイトル</h5>

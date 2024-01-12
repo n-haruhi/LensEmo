@@ -4,6 +4,14 @@ class Public::PostsController < ApplicationController
   def index
     # データベースのpostsテーブルに保存されている全てのデータを取得
     @posts = Post.all
+    # タグのor検索
+    if params[:tag_ids]
+      @posts = []
+      params[:tag_ids].each do |key, value|
+        @tweets += Tag.find_by(name: key).tweets if value == "1"
+      end
+      @tweets.uniq!
+    end
   end
 
   def new
@@ -48,7 +56,8 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, { emotion: [] }, :body, :post_image)
+    # emotionとtag_idsは複数入ってくる可能性のあるものなので配列の形式で記述
+    params.require(:post).permit(:title, { emotion: [] }, :body, :post_image, tag_ids: [])
   end
 
 end
