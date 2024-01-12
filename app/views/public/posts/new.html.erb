@@ -20,6 +20,19 @@
     <h5>本文</h5>
     <%= f.text_area :body, placeholder: "今日はどんな一日でしたか？" %>
 
+    <h5>タグ</h5>
+    <!-- db/seeds.rbで設定したデフォルトタグをここで表示 -->
+    <div class='form-group'>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+            <div class='form-check'>
+                <%= tag.label class: 'form-check-label' do %>
+                    <%= tag.check_box class: 'form-check-input' %>
+                    <%= tag.text %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+
     <%= f.submit '投稿' %>
   <% end %>
 </div>
