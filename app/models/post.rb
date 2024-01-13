@@ -7,6 +7,8 @@ class Post < ApplicationRecord
   # postsテーブルから中間テーブルを介してtagsテーブルへ
   has_many :tags, through: :post_tag_relations, dependent: :destroy
 
+  has_many :notifications, as: :notifiable, dependent: :destroy
+
   # Active Storageの設定。投稿画像と気持ちを表す画像を用いる。
   has_one_attached :post_image
   has_one_attached :emotion_image
