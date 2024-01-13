@@ -13,4 +13,13 @@ class Post < ApplicationRecord
   has_one_attached :post_image
   has_one_attached :emotion_image
 
+  # データベースへの保存処理の実行後に処理実行
+  # Postモデルのレコード作成に合わせてPost投稿者のフォロワーを取得し、
+  # eachメソッドでそれぞれに対して通知を作成
+  after_create do
+    user.followers.each do |follower|
+      Notification.create(user_id: follower.id, notifiable_type: "Post", notifiable_id: id)
+    end
+  end
+
 end
