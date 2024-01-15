@@ -1,10 +1,8 @@
 <div class="container">
   <h3>投稿詳細</h3>
 
-  <%= image_tag @post.get_image %>
-
   <div class="col mt-4 mb-3">
-    <p><%= @post.user.avatar %> <%= @post.user.username %></p>
+    <p><%= image_tag @post.get_avatar(100,100) %> <%= @post.user.username %></p>
   </div>
   <div class="col my-3">
     <h5><strong>タイトル</strong></h5>

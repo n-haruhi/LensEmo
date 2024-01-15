@@ -5,8 +5,8 @@
       <table class="table table-borderless">
         <tbody>
           <tr>
-            <th>アイコン</th>
-            <td><%= @user.avatar %></td>
+            <th><%= image_tag @user.get_avatar(100,100) %></th>
+            <td></td>
           </tr>
           <tr>
             <th>会員ID</th>

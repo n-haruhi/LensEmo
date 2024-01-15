@@ -10,10 +10,19 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :articles, dependent: :destroy
 
-  # プロフィール画像
+  # avatarという名前でプロフィール画像(アイコン)を保存できるように設定
   has_one_attached :avatar
 
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
+
+  # get_avatarメソッド。画像のリサイズが可能。get_avatar(100, 100)等が使える。
+  def get_avatar(width, height)
+    unless avatar.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      avatar.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpeg')
+    end
+    avatar.variant(resize_to_limit: [width, height]).processed
+  end
 
 end
