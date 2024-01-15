@@ -22,8 +22,9 @@ Rails.application.routes.draw do
     get "about" => "homes#about"
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
     resources :notifications, only: [:index, :show, :update]
-    resources :favorites, only: [:create, :destroy]
-    resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+      resource :favorite, only: [:create, :destroy]
+    end
     resources :users, only: [:edit, :update]
       get "users/mypage" => "users#show", as: :users_mypage
     resources :articles, only: [:index, :show]

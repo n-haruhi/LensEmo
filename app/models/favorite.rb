@@ -3,8 +3,8 @@ class Favorite < ApplicationRecord
   belongs_to :user
   belongs_to :post
 
-  # user_idとpost_image_idのペアが一意である（重複しない）状態に制限
-  validates :user_id, uniqueness: {scope: :post_image_id}
+  # user_idとpost_idのペアが一意である（重複しない）状態に制限
+  validates :user_id, uniqueness: {scope: :post_id}
 
   # ポリモーフィック関連を介してNotificationモデルと関連付けられる。
   # Notificationモデルをnotifiableという名前で扱う
