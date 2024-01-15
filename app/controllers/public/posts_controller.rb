@@ -3,14 +3,14 @@ class Public::PostsController < ApplicationController
 
   def index
     # データベースのpostsテーブルに保存されている全てのデータを取得
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(10)
     # タグのor検索
     if params[:tag_ids]
       @posts = []
       params[:tag_ids].each do |key, value|
-        @tweets += Tag.find_by(name: key).tweets if value == "1"
+        @posts += Tag.find_by(name: key).posts if value == "1"
       end
-      @tweets.uniq!
+      @posts.uniq!
     end
   end
 

@@ -1,9 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-6">
-      <h4 class="title"><strong><%= @user.username %>さんの会員詳細</strong></h4>
+    <div class="col-8">
+      <h4 class="title"><strong><%= @user.username %>さんのマイページ</strong></h4>
       <table class="table table-borderless">
         <tbody>
+          <tr>
+            <th>アイコン</th>
+            <td><%= @user.avatar %></td>
+          </tr>
           <tr>
             <th>会員ID</th>
             <td><%= @user.id %></td>
@@ -15,6 +19,10 @@
           <tr>
             <th>メールアドレス</th>
             <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <th>自己紹介</th>
+            <td><%= @user.introduction %></td>
           </tr>
         </tbody>
       </table>

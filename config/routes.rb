@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :users, only: [:index, :show, :edit, :update]
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
-
     # notificationsリソースに対してdeliverという名前のアクションを生成する
     # このアクションはcollectionに対してPOSTリクエストが送られた場合に呼び出される
     resources :notifications, only: [:new, :create, :send, :show, :index] do

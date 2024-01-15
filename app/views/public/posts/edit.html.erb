@@ -1,12 +1,14 @@
 <div class="container">
-  <h3>記事編集</h3>
+  <h3>投稿編集</h3>
 
   <%= form_with model: @post do |f| %>
-
-    <h5>タイトル</h5>
+  <div class="col mt-4 mb-3">
+    <h5><strong>タイトル</strong></h5>
     <%= f.text_field :title %>
-
-    <h5>あなたの気持ちをきかせてください</h5>
+  </div>
+  <div class="col my-3">
+    <h5><strong>気持ち</strong></h5>
+      <a>あなたの気持ちをきかせてください</a><br>
     <%= f.label :emotion_happy, class: "checkbox-image" do %>
       <%= f.check_box :emotion, { multiple: true }, "happy", nil %>
       <%= image_tag("happy.png", width: 100, height: 100) %>
@@ -17,11 +19,32 @@
       <%= image_tag("sad.png", width: 100, height: 100) %>
       <%= "Sad" %>
     <% end %>
-
+  </div>
+  <div class="col my-3">
     <h5>本文</h5>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, rows: 10, cols: 90 %>
+  </div>
+  <div class="col my-3">
+    <h5><strong>タグ <i class="fa-solid fa-tags"></i></strong></h5>
+    <!-- db/seeds.rbで設定したデフォルトタグをここで表示 -->
+    <div class='form-group'>
+      <div class="row">
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+          <div class="col-md-2">
+            <div class='form-check'>
+                <%= tag.label class: 'form-check-label' do %>
+                    <%= tag.check_box class: 'form-check-input' %>
+                    <%= tag.text %>
+                <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
+  <div class="col my-4">
     <%= f.submit '変更を保存' %>
-
+  </div>
   <% end %>
 </div>

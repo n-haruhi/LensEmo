@@ -1,8 +1,16 @@
 <div class="container">
-  <h4 class="title"><strong><%= @user.username %>さんの会員情報編集</strong></h4>
+  <h3 class="title"><strong><%= @user.username %>さんのプロフィール編集</strong></h3>
   <div class="row">
-    <div class="col-10">
+    <div class="col-10 mt-3">
       <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
+
+        <div class="field row">
+          <label for="inputAvatar" class=" col-3 col-form-label">アイコン</label>
+          <div class="col-3">
+            <%= "ここでアイコン編集" %>
+          </div>
+        </div>
+
         <div class="field row">
           <label class="col-3">会員ID</label>
           <p class="col-1"><%= @user.id %></p>
@@ -19,6 +27,13 @@
           <label for="inputEmail" class="col-3 col-form-label">メールアドレス</label>
           <div class="col-3">
             <%= f.email_field :email, class:"form_control", id:'inputEmail' %>
+          </div>
+        </div>
+
+        <div class="field row">
+          <label for="inputIntroduction" class="col-3 col-form-label">自己紹介</label>
+          <div class="col-3">
+            <%= f.text_area :introduction, class:"form_control", id:'inputIntroduction' %>
           </div>
         </div>
 

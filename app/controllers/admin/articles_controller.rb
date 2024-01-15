@@ -10,10 +10,9 @@ class Admin::ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to admin_article_path(article.id), notice: "投稿成功しました。"
+      redirect_to admin_article_path(@article.id), notice: "投稿成功しました。"
     else
-      @article = Article.all
-      render 'admin/articles'
+      render 'admin/articles/new'
     end
   end
 

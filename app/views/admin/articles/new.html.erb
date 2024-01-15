@@ -1,15 +1,14 @@
 <div class="container">
-  <div class="col">
+  <div class="col mb-3">
     <h3>管理者　記事投稿画面</h3>
   </div>
 
-  <%= form_with model: @article do |f| %>
+  <%= form_with model: @article, url: admin_articles_path do |f| %>
   <div class="col my-2">
-    <h5>タイトル</h5>
-    <%= f.text_field :title %>
+    <h5>記事を作成</h5>
+    <%= f.text_field :title, placeholder: "タイトル" %>
   </div>
   <div class="col my-2">
-    <h5>本文</h5>
     <%= f.text_area :body, placeholder: "どんな記事を書きますか？" %><br>
   </div>
   <div class="col my-2">
