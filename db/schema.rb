@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_12_133442) do
+ActiveRecord::Schema.define(version: 2024_01_13_135414) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -79,15 +79,12 @@ ActiveRecord::Schema.define(version: 2024_01_12_133442) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "post_id", null: false
-    t.integer "favorite_id", null: false
-    t.boolean "read"
-    t.string "notifiable_type"
-    t.integer "notifiable_id"
+    t.string "notifiable_type", null: false
+    t.integer "notifiable_id", null: false
+    t.boolean "read", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["favorite_id"], name: "index_notifications_on_favorite_id"
-    t.index ["post_id"], name: "index_notifications_on_post_id"
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -134,8 +131,6 @@ ActiveRecord::Schema.define(version: 2024_01_12_133442) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "notifications", "favorites"
-  add_foreign_key "notifications", "posts"
   add_foreign_key "notifications", "users"
   add_foreign_key "post_tag_relations", "posts"
   add_foreign_key "post_tag_relations", "tags"
