@@ -24,7 +24,7 @@
       <% @posts.each do |post| %>
       <tbody>
         <tr>
-          <td><%= image_tag @post.get_avatar(100,100) %></td>
+          <td><%= image_tag @user.get_avatar(100,100) %></td>
           <td><%= link_to post.title, post_path(post.id) %></td>
           <td><%= post.body %></td>
           <td class="actions text-center">

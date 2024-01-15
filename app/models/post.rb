@@ -19,4 +19,12 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  def get_avatar(width, height)
+    unless avatar.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      avatar.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpeg')
+    end
+    avatar.variant(resize_to_limit: [width, height]).processed
+  end
+
 end
