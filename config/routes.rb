@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     resources :notifications, only: [:new, :create, :send, :show, :index] do
       post 'deliver', on: :collection
     end
-
     resources :favorites, only: [:index, :show, :destroy]
     resources :posts, only: [:index, :show]
     resources :articles, only: [:index, :new, :create, :show, :edit, :update]
@@ -25,7 +24,7 @@ Rails.application.routes.draw do
       resource :favorite, only: [:create, :destroy]
     end
     resources :users, only: [:edit, :update]
-      get "users/mypage" => "users#show", as: :users_mypage
+      get "users/mypage" => "users#show"
     resources :articles, only: [:index, :show]
   end
 

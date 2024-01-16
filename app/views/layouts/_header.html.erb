@@ -59,7 +59,7 @@
           <% elsif admin_signed_in? %>
             <li>
               <%= link_to admin_root_path, class: 'nav-link text-white' do %>
-                <i class="fas fa-home"></i> 管理者トップ
+                <i class="fas fa-home"></i> Home
               <% end %>
             </li>
             <li>
@@ -70,11 +70,6 @@
             <li>
               <%= link_to admin_users_path, class: 'nav-link text-white' do %>
                 <i class="fas fa-users"></i> 会員一覧
-              <% end %>
-            </li>
-            <li>
-              <%= link_to admin_tags_path, class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-tags"></i> タグ一覧
               <% end %>
             </li>
             <li>

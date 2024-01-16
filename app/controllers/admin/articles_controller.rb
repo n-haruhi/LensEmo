@@ -1,6 +1,6 @@
 class Admin::ArticlesController < ApplicationController
   def index
-    @articles = Article.all
+    @articles = Article.all.page(params[:page]).per(10)
   end
 
   def new
@@ -8,7 +8,7 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = current_admin.article.new(article_params)
     if @article.save
       redirect_to admin_article_path(@article.id), notice: "投稿成功しました。"
     else
@@ -33,7 +33,7 @@ class Admin::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :body, :article_image)
+    params.require(:article).permit(:nickname, :title, :body, :article_image)
   end
 
 end

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   # パスに「/userもしくは/mypage」が含まれているか確認。
   # request.fullpathで飛んだ先のpathを全て取得。include?(val)でvalと同じ要素が含まれていれば、trueを返す。
   def public_url
-    request.fullpath.include?("/public, /mypage")
+    request.fullpath.include?("/public") || request.fullpath.include?("/mypage")
   end
 
   # パスに「/admin」が含まれているか確認。

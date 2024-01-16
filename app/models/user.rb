@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  has_many :articles, dependent: :destroy
+  # has_many :articles, dependent: :destroy
 
   # avatarという名前でプロフィール画像(アイコン)を保存できるように設定
   has_one_attached :avatar

@@ -1,5 +1,4 @@
 <div class="container">
-  <!-- この一覧にカレンダー入れたい -->
   <div class="col mt-4 mb-3 bg-light d-flex justify-content-center">
     <!-- タグ検索。タグ検索用の情報を送信する項目。タグが複数でも検索可能に-->
     <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
@@ -8,6 +7,7 @@
         <% end %>
         <%= submit_tag '検索' %>
     <% end %>
+    <!-- タグ検索記述ここまで -->
   </div>
 
   <h3>投稿一覧</h3>

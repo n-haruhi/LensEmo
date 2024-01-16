@@ -29,11 +29,11 @@
     </div>
   </div>
   <div class="row">
-    <div class="col offset-2">
-      <%= link_to "編集する", edit_user_path(@user), class:'btn btn-success px-3' %>
+    <div class="col-3 text-right mt-4">
+      <%= link_to "編集", edit_user_path(@user), class:'btn btn-outline-secondary' %>
     </div>
-    <div class="col">
-      <%=link_to "記事一覧を見る", admin_root_path, class:'btn btn-primary px-3' %>
+    <div class="col-2 mt-4">
+      <%=link_to "記事一覧へ", articles_path, class:'btn btn-outline-info' %>
     </div>
   </div>
 </div>
