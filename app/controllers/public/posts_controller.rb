@@ -21,8 +21,7 @@ class Public::PostsController < ApplicationController
 
   def create
     # データを受け取り新規登録するためのインスタンス作成
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post = current_user.post.new(post_params)
     @user = current_user
     if @post.save
       redirect_to post_path(@post.id), notice: "投稿成功しました。"

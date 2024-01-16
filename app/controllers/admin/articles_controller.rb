@@ -8,7 +8,7 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def create
-    @article = current_admin.article.new(article_params)
+    @article = current_user.article.new(article_params)
     if @article.save
       redirect_to admin_article_path(@article.id), notice: "投稿成功しました。"
     else
