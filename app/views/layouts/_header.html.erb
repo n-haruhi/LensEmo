@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-light" style="background: #e1987b;">
     <div class="container">
-      <a class="navbar-brand text-white" href="/"><span>LensEmo</span></a>
+      <a class="navbar-brand text-white" href="/"><%= image_tag('LensEmoLogo1.jpg', alt: "ロゴ") %></a>
       <div class="mt-3 text-white">
         <% if user_signed_in? %>
           <p>ようこそ<%= current_user.username %>さん！</p>
@@ -29,13 +29,13 @@
             </li>
             <li>
               <%= link_to articles_path, class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-envelopes-bulk"></i> 記事一覧
+                <i class="fa-solid fa-envelopes-bulk"></i> 記事
               <% end %>
             </li>
             <!-- 通知ボタン -->
             <li class="dropdown">
               <button class="btn dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Notification
+                <i class="fa-solid fa-bell"></i> 通知
                 <span class="badge badge-danger"><%= current_user.notifications.where(read: false).count %></span>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
