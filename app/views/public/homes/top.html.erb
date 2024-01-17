@@ -1,6 +1,27 @@
 <div class="container">
-  <h3>ユーザー側トップページ</h3>
 
-  <a>ようこそ！<strong>LensEmo</strong>へ</a>
+  <div class="col mt-5">
+    <div class="text-center" style="font-size:20px; background-image: url('<%= asset_path('top1.jpg') %>'); background-size: cover; height: 600px;" >
+      <div class="d-flex align-items-center justify-content-center" style="wifth: 900px; height: 600px;" >
+        <div style="background-color: rgba(255,255,255,.8);font-family:'Playfair Display', serif;" >
+          <p>ようこそ！ <strong>LensEmo </strong>へ<br>
+          LensEmo では、あなたが日々感じていることや出会ったもの、<br>
+          あなたの気持ちや悩み、喜び等、自由に記録することができます。<br>
+          さらに投稿につけたタグから同じような想いをもつ人の投稿をみることもできます。<br>
+          応援ボタンを押すとエールを送ることも！<br>
+          使い方にルールはありません。ここはあなたが自由に表現して良い場です。<br>
+
+          ではさっそくつかってみましょう！</p>
+
+          <div class="col my-2 d-flex justify-content-center">
+            <%= link_to posts_path, class: 'btn btn-outline-light text-dark' do %>
+               <strong>はじめる </strong><i class="fa-regular fa-circle-play"></i>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
