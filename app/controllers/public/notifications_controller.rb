@@ -1,9 +1,5 @@
 class Public::NotificationsController < ApplicationController
-  def index
-  end
-
-  def show
-  end
+  before_action :authenticate_user!
 
   def update
     # ログインしているユーザに紐づく通知レコードから指定のidのレコードを取得
