@@ -2,12 +2,21 @@
   <h3 class="title"><strong><%= @user.username %>さんのプロフィール編集</strong></h3>
   <div class="row">
     <div class="col-10 mt-3">
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %>つのエラーにより変更を保存できませんでした。
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
       <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
 
         <div class="field row">
           <label for="inputAvatar" class=" col-3 col-form-label">アイコン</label>
           <div class="col-3">
-            <%= "ここでアイコン編集" %>
+            <%= f.file_field :avatar, accept: "image/*" %>
           </div>
         </div>
 

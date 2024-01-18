@@ -30,7 +30,7 @@ class Admin::ArticlesController < ApplicationController
   def update
     article = Article.find(params[:id])
     if article.update(article_params)
-      redirect_to article_path(article.id)
+      redirect_to admin_articles_path(article.id), notice: "投稿成功しました。"
     else
       render 'edit'
     end
@@ -43,7 +43,7 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:username, :title, :body, :article_image).merge(user_id: current_user.id)
+    params.require(:article).permit(:username, :title, :body, :nickname, :article_image).merge(user_id: current_user.id)
   end
 
 end

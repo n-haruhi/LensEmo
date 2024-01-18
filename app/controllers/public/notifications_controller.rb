@@ -1,6 +1,4 @@
 class Public::NotificationsController < ApplicationController
-  before_action :authenticate_user!
-
   # ログインしているユーザに紐づく通知レコードから指定のidのレコードを取得
   # ここでの更新はreadカラムをtrueに。未読から既読への更新=>既読状態にすること
   def update

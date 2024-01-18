@@ -16,12 +16,12 @@
       <% @articles.each do |article| %>
       <tbody>
         <tr>
-          <td><%= article.nickname %></td>
+          <td><%= article.user.username %></td>
           <td><%= link_to article.title, article_path(article.id) %></td>
           <td><%= article.body %></td>
           <td class="actions text-center">
-            <%= link_to "詳細", admin_articles_path(article.id), class: "btn btn-outline-info" %>
-            <%= link_to "編集", admin_edit_article_path(article.id), class: "btn btn-outline-secondary mx-1" %>
+            <%= link_to "詳細", admin_article_path(article.id), class: "btn btn-outline-info" %>
+            <%= link_to "編集", edit_admin_article_path(article.id), class: "btn btn-outline-secondary mx-1" %>
             <%= link_to "削除", admin_article_path(article.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-warning" %>
           </td>
         </tr>
