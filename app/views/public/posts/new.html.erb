@@ -34,7 +34,7 @@
     </div>
     <div class="col my-3">
       <h5><strong>タグ <i class="fa-solid fa-tags"></i></strong></h5>
-      <!-- db/seeds.rbで設定したデフォルトタグをここで表示 -->
+      <!-- 設定したデフォルトタグをここで表示 -->
       <div class='form-group'>
         <div class="row">
           <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
