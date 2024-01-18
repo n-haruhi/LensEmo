@@ -11,9 +11,9 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-    user = current_user
-    if user.update(user_params)
+    @user = User.find(params[:id])
+    @user = current_user
+    if @user.update(user_params)
       redirect_to users_mypage_path(current_user), notice: "更新成功しました。" # 自身のマイページ(show)へ
     else
       render 'edit'
