@@ -3,14 +3,14 @@ class Public::PostsController < ApplicationController
 
   def index
     # データベースのpostsテーブルに保存されている全てのデータを取得
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(10)
     # タグのor検索
     if params[:tag_ids]
       @posts = []
       params[:tag_ids].each do |key, value|
-        @tweets += Tag.find_by(name: key).tweets if value == "1"
+        @posts += Tag.find_by(name: key).posts if value == "1"
       end
-      @tweets.uniq!
+      @posts.uniq!
     end
   end
 
@@ -21,13 +21,12 @@ class Public::PostsController < ApplicationController
 
   def create
     # データを受け取り新規登録するためのインスタンス作成
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post = current_user.posts.new(post_params)
     @user = current_user
     if @post.save
-      redirect_to post_path(@post.id), notice: "投稿成功しました。"
+      redirect_to post_path(@post.id), notice: "投稿しました。"
     else
-      render :new, notice: "投稿できませんでした。"
+      render 'new'
     end
   end
 
@@ -42,14 +41,17 @@ class Public::PostsController < ApplicationController
 
   def update
     post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to post_path(post.id)
+    if post.update(post_params)
+      redirect_to post_path(post.id), notice: "投稿が更新されました。"
+    else
+      render 'edit'
+    end
   end
 
   def destroy
     post = Post.find(params[:id])
     if post.destroy
-      redirect_to '/posts'
+      redirect_to '/posts', notice: "投稿が削除されました。"
     end
   end
 

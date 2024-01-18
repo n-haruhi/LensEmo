@@ -1,11 +1,23 @@
 <div class="container">
   <h3>管理者　記事詳細</h3>
 
-  <h5>タイトル</h5>
-  <p><%= @article.title %></p>
+  <div class="col mt-4 mb-3">
+    <p><%= @article.user.username %></p>
+  </div>
+  <div class="col my-3">
+    <h5><strong>タイトル</strong></h5>
+    <p><%= @article.title %></p>
+  </div>
+  <div class="col my-3">
+    <h5><strong>本文</strong></h5>
+    <p><%= @article.body %></p>
+  </div>
 
-  <h5>本文</h5>
-  <p><%= @article.body %></p>
-
-  <%= link_to "編集", admin_article_path(@article.id) %>
+  <div class="col my-3">
+    <!-- ログインしているユーザーと一致していたらボタンを表示 -->
+    <% if @article.user == current_user %>
+      <%= link_to "編集", edit_admin_article_path(@article.id), class: "btn btn-outline-secondary" %>
+    <% end %>
+    <%= link_to "一覧へ", admin_articles_path, class: "btn btn-outline-primary" %>
+  </div>
 </div>

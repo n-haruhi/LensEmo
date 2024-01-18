@@ -1,8 +1,16 @@
 <div class="container">
-  <h4 class="title"><strong><%= @user.username %>さんの会員情報編集</strong></h4>
+  <h3 class="title"><strong><%= @user.username %>さんのプロフィール編集</strong></h3>
   <div class="row">
-    <div class="col-10">
+    <div class="col-10 mt-3">
       <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
+
+        <div class="field row">
+          <label for="inputAvatar" class=" col-3 col-form-label">アイコン</label>
+          <div class="col-3">
+            <%= "ここでアイコン編集" %>
+          </div>
+        </div>
+
         <div class="field row">
           <label class="col-3">会員ID</label>
           <p class="col-1"><%= @user.id %></p>
@@ -22,8 +30,15 @@
           </div>
         </div>
 
-        <div class="col-3">
-          <%= f.submit "変更を保存", class:"btn btn-success" %>
+        <div class="field row">
+          <label for="inputIntroduction" class="col-3 col-form-label">自己紹介</label>
+          <div class="col-3">
+            <%= f.text_area :introduction, rows: 5, cols: 60, class:"form_control", id:'inputIntroduction' %>
+          </div>
+        </div>
+
+        <div class="col-6 text-center mt-4">
+          <%= f.submit "変更を保存", class:"btn btn-outline-success" %>
         </div>
       <% end %>
     </div>

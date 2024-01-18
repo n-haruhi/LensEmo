@@ -1,23 +1,52 @@
 <div class="container">
   <h3>投稿詳細</h3>
 
-  <%= image_tag @post.get_image %>
-
-  <h5>プロフィール画像</h5>
-  <p><%= image_tag @post.user.get_profile_image(100,100) %></p>
-
-  <h5>ユーザー名</h5>
-  <p><%= @post.user.username %></p>
-
-  <h5>タイトル</h5>
-  <p><%= @post.title %></p>
-
-  <h5>感情</h5>
-  <p><%= @post.emotion %></p>
-
-  <h5>本文</h5>
-  <P><%= @post.body %></P>
-
-  <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-
+  <div class="col mt-4 mb-3">
+    <p><%= image_tag @post.get_avatar(100,100) %> <%= @post.user.username %></p>
+  </div>
+  <div class="col my-3">
+    <h5><strong>タイトル</strong></h5>
+    <p><%= @post.title %></p>
+  </div>
+  <div class="col my-3">
+    <h5><strong>気持ち</strong></h5>
+    <p><%= @post.emotion %></p>
+  </div>
+  <div class="col my-3">
+    <h5><strong>本文</strong></h5>
+    <P><%= @post.body %></P>
+  </div>
+  <div class="col my-3">
+    <!-- 投稿で選んだタグの表示。複数選択でも表示できるように記述 -->
+    <h5><strong>タグ <i class="fa-solid fa-tags"></i></strong></h5>
+    <% @post.tags.each do |tag| %>
+      <span><%= tag.name %></span>
+    <% end %>
+  </div>
+  <div class="col my-3">
+    <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+  </div>
+  <div class="col my-3">
+    <!-- いいね機能 -->
+    <% if @post.favorited_by?(current_user) %>
+      <p>
+        <%= link_to post_favorite_path(@post), method: :delete do %>
+          <i class="fa-solid fa-flag"></i> <%= @post.favorites.count %>
+        <% end %>
+      </p>
+      <% else %>
+      <p>
+        <%= link_to post_favorite_path(@post), method: :post do %>
+          <i class="fa-regular fa-flag"></i> <%= @post.favorites.count %>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+  <div class="col my-3">
+    <!-- ログインしているユーザーと一致していたらボタンを表示 -->
+    <% if @post.user == current_user %>
+      <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-outline-secondary" %>
+      <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-outline-warning" %>
+    <% end %>
+  </div>
 </div>

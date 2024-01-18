@@ -1,38 +1,57 @@
 <div class="container">
-  <h3>新規投稿</h3>
+    <h3>投稿作成 <i class="fa-solid fa-pen"></i></h3>
 
-  <%= form_with model: @post do |f| %>
-    <h5>タイトル</h5>
-    <%= f.text_field :title %>
-
-    <h5>あなたの気持ちをきかせてください</h5>
-    <%= f.label :emotion_happy, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "happy", nil %>
-      <%= image_tag("happy.png", width: 100, height: 100) %>
-      <%= "Happy" %>
-    <% end %>
-    <%= f.label :emotion_sad, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
-      <%= image_tag("sad.png", width: 100, height: 100) %>
-      <%= "Sad" %>
-    <% end %>
-
-    <h5>本文</h5>
-    <%= f.text_area :body, placeholder: "今日はどんな一日でしたか？" %>
-
-    <h5>タグ</h5>
-    <!-- db/seeds.rbで設定したデフォルトタグをここで表示 -->
-    <div class='form-group'>
-        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-            <div class='form-check'>
-                <%= tag.label class: 'form-check-label' do %>
-                    <%= tag.check_box class: 'form-check-input' %>
-                    <%= tag.text %>
-                <% end %>
-            </div>
+    <% if @post.errors.any? %>
+      <%= @post.errors.count %>つのエラーにより投稿できませんでした。
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
-    </div>
+      </ul>
+    <% end %>
 
-    <%= f.submit '投稿' %>
-  <% end %>
+    <%= form_with model: @post do |f| %>
+    <div class="col mt-4 mb-3">
+      <%= f.text_field :title, placeholder: "タイトル" %>
+    </div>
+    <div class="col my-3">
+      <h5><strong>気持ち</strong></h5>
+        <a>あなたの気持ちをきかせてください</a><br>
+      <%= f.label :emotion_happy, class: "checkbox-image" do %>
+        <%= f.check_box :emotion, { multiple: true }, "happy", nil %>
+        <%= image_tag("happy.png", width: 100, height: 100) %><br>
+        <%= "Happy" %>
+      <% end %>
+      <%= f.label :emotion_sad, class: "checkbox-image" do %>
+        <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
+        <%= image_tag("sad.png", width: 100, height: 100) %><br>
+        <%= "Sad" %>
+      <% end %>
+    </div>
+    <div class="col my-3">
+      <h5><strong>本文</strong></h5>
+      <%= f.text_area :body, rows: 10, cols: 90, placeholder: "今日はどんな一日でしたか？" %>
+    </div>
+    <div class="col my-3">
+      <h5><strong>タグ <i class="fa-solid fa-tags"></i></strong></h5>
+      <!-- db/seeds.rbで設定したデフォルトタグをここで表示 -->
+      <div class='form-group'>
+        <div class="row">
+          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+            <div class="col-md-2">
+              <div class='form-check'>
+                  <%= tag.label class: 'form-check-label' do %>
+                      <%= tag.check_box class: 'form-check-input' %>
+                      <%= tag.text %>
+                  <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col my-4">
+      <%= f.submit '投稿', class: "btn btn-outline-success btn-sm" %>
+    </div>
+    <% end %>
 </div>

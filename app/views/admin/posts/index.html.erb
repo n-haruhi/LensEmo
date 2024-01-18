@@ -1,10 +1,31 @@
 <div class="container">
+
   <h3>投稿一覧</h3>
-
-  <% @posts.each do |post| %>
-
-    <h5>タイトル</h5>
-    <span><%= link_to post.title, post_path(post.id) %></span>
-
-  <% end %>
+  <div class="col my-3">
+    <table class="table">
+      <thead>
+        <tr class="bg-light">
+          <th class="name">タイトル</th>
+          <th class="name">本文</th>
+          <th class="name"></th>
+        </tr>
+      </thead>
+      <% @posts.each do |post| %>
+      <tbody>
+        <tr>
+          <td><%= link_to post.title, post_path(post.id) %></td>
+          <td><%= post.body %></td>
+          <td class="actions text-center">
+            <%= link_to "詳細", post_path(post.id), class: "btn btn-outline-info" %>
+            <%= link_to "編集", edit_post_path(post.id), class: "btn btn-outline-secondary mx-1" %>
+            <%= link_to "削除", post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-warning" %>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+  <div class="col d-flex justify-content-center" >
+    <%= paginate @posts %>
+  </div>
 </div>

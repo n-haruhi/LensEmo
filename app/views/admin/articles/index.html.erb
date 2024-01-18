@@ -1,10 +1,32 @@
 <div class="container">
   <h3>管理者　記事一覧</h3>
-
-  <% @articles.each do |article| %>
-
-    <h5>タイトル</h5>
-    <span><%= link_to article.title, article_path(article.id) %></span>
-
-  <% end %>
+  <div class="col text-right">
+    <%= link_to "記事を書く", new_admin_article_path, class: "btn btn-outline-primary" %>
+  </div>
+  <div class="col my-3">
+    <table class="table">
+      <thead>
+        <tr class="bg-light">
+          <th>タイトル</th>
+          <th>本文</th>
+          <th></th>
+        </tr>
+      </thead>
+      <% @articles.each do |article| %>
+      <tbody>
+        <tr>
+          <td><%= link_to article.title, article_path(article.id) %></td>
+          <td><%= article.body %></td>
+          <td class="actions text-center">
+            <%= link_to "詳細", admin_article_path(article.id), class: "btn btn-outline-info" %>
+            <%= link_to "編集", edit_admin_article_path(article.id), class: "btn btn-outline-secondary mx-1" %>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+  <div class="col d-flex justify-content-center" >
+    <%= paginate @articles %>
+  </div>
 </div>

@@ -1,34 +1,36 @@
 <div class = "container">
-  <div class = "row">
-    <div class "col-md-4 px-sm-0 mx-auto ">
-      <h3>会員一覧</h3>
-    </div>
-    <div class = "col-md-7 offset-md-1 mt-5 pt-2 ">
-      <table class = "table  ">
-        <thead>
-          <tr>
-            <th class = "table-active">会員ID</th>
-            <th class = "table-active">ユーザー名</th>
-            <th class = "table-active">メールアドレス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |users| %>
-          <tr>
-            <td ><%= uers.id %></td>
-            <td >
-              <%= link_to admin_user_path(users.id) do %>
-              <%= users.username %>
-              <% end %>
-            </td>
-            <td ><%= users.email %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <div class="col d-flex justify-content-center" >
-      <%= paginate @users %>
-      </div>
+  <div class "col">
+    <h3>会員一覧</h3>
+  </div>
+  <div class = "col mt-4 mb-3">
+    <table class = "table table-hover">
+      <thead>
+        <tr class="bg-light">
+          <th></th>
+          <th>会員ID</th>
+          <th>ユーザー名</th>
+          <th>メールアドレス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |users| %>
+        <tr>
+          <td>
+            <%= image_tag users.get_avatar(50,50), class:"rounded-circle"; %>
+          </td>
+          <td><%= users.id %></td>
+          <td>
+            <%= link_to admin_user_path(users.id) do %>
+            <%= users.username %>
+            <% end %>
+          </td>
+          <td ><%= users.email %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="col d-flex justify-content-center" >
+    <%= paginate @users %>
     </div>
   </div>
 </div>

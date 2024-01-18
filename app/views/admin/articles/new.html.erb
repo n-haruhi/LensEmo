@@ -1,19 +1,25 @@
 <div class="container">
-  <div class="col">
-    <h3>管理者　記事投稿画面</h3>
-  </div>
+  <h3>記事作成</h3>
 
-  <%= form_with model: @article do |f| %>
-  <div class="col my-2">
-    <h5>タイトル</h5>
-    <%= f.text_field :title %>
+  <% if @article.errors.any? %>
+    <%= @article.errors.count %>つのエラーにより記事が保存できません。
+    <ul>
+      <% @article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form_with model: @article, url: admin_articles_path do |f| %>
+  <div class="col mt-4 mb-3">
+    <%= f.text_field :title, placeholder: "タイトル" %>
   </div>
-  <div class="col my-2">
-    <h5>本文</h5>
-    <%= f.text_area :body, placeholder: "どんな記事を書きますか？" %><br>
+  <div class="col my-3">
+    <h5><strong>本文</strong></h5>
+    <%= f.text_area :body, rows: 10, cols: 90, placeholder: "どんな記事を書きますか？" %><br>
   </div>
-  <div class="col my-2">
-    <%= f.submit '投稿', class: "btn btn-primary btn-sm" %>
+  <div class="col my-4">
+    <%= f.submit '投稿', class: "btn btn-outline-success btn-sm" %>
   </div>
   <% end %>
 

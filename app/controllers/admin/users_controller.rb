@@ -13,14 +13,17 @@ class Admin::UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to admin_user_path(user.id)
+    if user.update(user_params)
+      redirect_to admin_user_path, notice: "更新成功しました。"
+    else
+      render 'admin/users/edit'
+    end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :avatar)
+    params.require(:user).permit(:avatar, :username, :email, :introduction)
   end
 
 end
