@@ -1,16 +1,17 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    # データベースのpostsテーブルに保存されている全てのデータを取得
     @posts = Post.all.page(params[:page]).per(10)
-    # タグのor検索
-    if params[:tag_ids]
+    # タグのAND検索
+    if params[:tag_ids] # 存在するならタグの検索
       @posts = []
       params[:tag_ids].each do |key, value|
-        @posts += Tag.find_by(name: key).posts if value == "1"
+        if value == "1" # `value`が「1」である場合に検索を行う
+          tag_posts = Tag.find_by(name: key).posts #`Tag`モデルから`name`が`key`と一致するタグを見つけ(`tag_posts`)を取得
+          @posts = @posts.empty? ? tag_posts : @posts & tag_posts
+          @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10) # 配列の場合のページネーション記述
+        end
       end
-      @posts.uniq!
     end
   end
 

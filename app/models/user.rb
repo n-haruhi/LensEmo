@@ -25,4 +25,13 @@ class User < ApplicationRecord
     avatar.variant(resize_to_limit: [width, height]).processed
   end
 
+  # ゲストログイン
+  def self.guest
+    # 以下のemailに一致するレコードをデータベースから検索。あればそのレコードを返し、なければ作成する。
+    find_or_create_by!(email: 'guest@email.com') do |user|
+      user.username = "ゲスト" # ゲストというユーザー名で作成される。
+      user.password = SecureRandom.urlsafe_base64 # ランダムな文字列でパスワードが生成される。
+    end
+  end
+
 end

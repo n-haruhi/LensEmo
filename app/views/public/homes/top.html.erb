@@ -12,14 +12,14 @@
           応援ボタンを押すとエールを送ることも！<br>
           使い方にルールはありません。ここはあなたが自由に表現して良い場です。<br>
 
-          ではさっそくつかってみましょう！</p><br>
+          ではさっそくつかってみましょう！</p>
 
           <div class="col my-2 d-flex justify-content-center">
             <%= link_to posts_path, class: 'btn btn-outline-light text-dark' do %>
                <strong>はじめる </strong><i class="fa-regular fa-circle-play"></i>
             <% end %>
           </div>
-
+            <%= link_to "ゲストとしてログイン", users_guest_sign_in_path, method: :post, class: 'btn btn-outline-light text-dark' %>
         </div>
       </div>
     </div>

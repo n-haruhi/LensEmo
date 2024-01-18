@@ -5,16 +5,17 @@
     <table class="table">
       <thead>
         <tr class="bg-light">
-          <th class="name">タイトル</th>
-          <th class="name">本文</th>
-          <th class="name"></th>
+          <th></th>
+          <th>ユーザー名</th>
+          <th>タイトル</th>
+          <th></th>
         </tr>
       </thead>
       <% @posts.each do |post| %>
       <tbody>
         <tr>
+          <td><%= image_tag post.get_avatar(70,70), class:"rounded-circle"; %></td>
           <td><%= link_to post.title, post_path(post.id) %></td>
-          <td><%= post.body %></td>
           <td class="actions text-center">
             <%= link_to "詳細", post_path(post.id), class: "btn btn-outline-info" %>
             <%= link_to "編集", edit_post_path(post.id), class: "btn btn-outline-secondary mx-1" %>

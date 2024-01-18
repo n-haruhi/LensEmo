@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+
   def index
     @users = User.all.page(params[:page]).per(10)
   end
@@ -12,11 +13,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-    if user.update(user_params)
-      redirect_to admin_user_path, notice: "更新成功しました。"
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to admin_user_path(@user), notice: "会員情報を更新しました。"
     else
-      render 'admin/users/edit'
+      render 'edit'
     end
   end
 
