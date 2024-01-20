@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="col mt-4 mb-3 bg-light d-flex justify-content-center">
+  <div class="col mt-4 mb-3 d-flex justify-content-center">
     <!-- タグ検索。タグ検索用の情報を送信する項目。タグが複数でも検索可能に-->
     <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
         <% Tag.all.each do |t| %>
@@ -10,14 +10,16 @@
     <!-- ここまで -->
   </div>
 
-  <h3>投稿一覧</h3>
+  <h3>みんなの投稿</h3>
   <div class="col text-right">
-    <%= link_to "投稿する", new_post_path, class: "btn btn-outline-primary" %>
+    <%= link_to new_post_path, class: "btn btn-outline-primary" do %>
+      書く <i class="fa-solid fa-feather"></i>
+    <% end %>
   </div>
   <div class="col my-3">
     <table class="table">
       <thead>
-        <tr class="bg-light">
+        <tr style="background: #dad2bf;">
           <th></th>
           <th>ユーザー名</th>
           <th>タイトル</th>
@@ -28,7 +30,7 @@
       <tbody>
         <tr>
           <td><%= image_tag post.get_avatar(70,70), class:"rounded-circle"; %></td>
-          <td><%= post.user.username %></td>
+          <td><%= link_to post.user.username, users_mypage_path(post.user) %></td>
           <td><%= link_to post.title, post_path(post.id) %></td>
           <td class="actions text-center">
             <%= link_to "詳細", post_path(post.id), class: "btn btn-outline-info" %>

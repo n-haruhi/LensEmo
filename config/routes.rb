@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # adminのルーティングをnamespaceでまとめる
   namespace :admin do
     root to: "homes#top"
@@ -18,6 +17,8 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "homes#top"
     get "about" => "homes#about"
+    # カレンダー
+    get '/events', to: 'events#index' #, defaults: { format: 'json' }
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
     resources :notifications, only: [:index, :show, :update]
     resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy] do

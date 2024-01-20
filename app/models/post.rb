@@ -42,7 +42,7 @@ class Post < ApplicationRecord
   # bodyが空、且つ、emotionも空ならエラーメッセージ=>両方空ならエラーというカスタムのバリデーション。
   def require_either_emotion_or_body
     if emotion.blank? && body.blank?
-      errors.add(:base, "気持ちか本文のどちらか一方は必須です。")
+      errors.add(:base, "気持ちか内容どちらか一方は必須です。")
     end
   end
 
