@@ -20,6 +20,13 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  # favoriteテーブルから@userのuser_idを見つけてくる
+  def favorites
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
+
   private
 
   def user_params

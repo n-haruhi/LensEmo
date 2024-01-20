@@ -1,0 +1,6 @@
+<div class="container">
+  <h3>応援した投稿</h3>
+  <%= link_to @post.user.username, user_path(@post.user) %>
+  <%= @post.likes.length %>
+  <%= link_to @post.title, post_path(@post.id) %>
+</div>

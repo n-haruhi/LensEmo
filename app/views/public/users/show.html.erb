@@ -1,42 +1,43 @@
 <div class="container">
   <div class="row">
-    <div class="col-8">
-      <h4 class="title"><strong><%= @user.username %>さんのマイページ</strong></h4>
-      <table class="table table-borderless">
-        <tbody>
-          <tr>
-            <th><%= image_tag @user.get_avatar(100,100), class:"mt-3 rounded-circle"; %></th>
-            <td></td>
-          </tr>
-          <tr>
-            <th>会員ID</th>
-            <td><%= @user.id %></td>
-          </tr>
-          <tr>
-            <th>ユーザー名</th>
-            <td><%= @user.username %></td>
-          </tr>
-          <tr>
-            <th>メールアドレス</th>
-            <td><%= @user.email %></td>
-          </tr>
-          <tr>
-            <th>自己紹介</th>
-            <td><%= @user.introduction %></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="col-md-3">
+      <div sidebar_fixed>
+        <h4 class="title"><strong><%= @user.username %>さんのマイページ</strong></h4>
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th><%= image_tag @user.get_avatar(100,100), class:"mt-3 rounded-circle"; %></th>
+              <td></td>
+            </tr>
+            <tr>
+              <th><%= @user.username %></th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>自己紹介</th>
+              <td><%= @user.introduction %></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="col">
+          <!-- ログインしているユーザーと一致していたらボタンを表示 -->
+          <% if @user == current_user %>
+            <div class="col">
+              <%= link_to "編集", edit_user_path(@user), class:'btn btn-outline-secondary' %>
+            </div>
+            <div class="col">
+              <%= link_to '応援した投稿', favorites_user_path(@user), class:'btn btn-outline-info' %>
+            </div>
+          <% end %>
+          <div class="col">
+            <%=link_to "みんなの投稿へ", posts_path, class:'btn btn-outline-info' %>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-2 text-right mt-4">
-      <!-- ログインしているユーザーと一致していたらボタンを表示 -->
-      <% if @user == current_user %>
-        <%= link_to "編集", edit_user_path(@user), class:'btn btn-outline-secondary' %>
-      <% end %>
-    </div>
-    <div class="col-2 mt-4">
-      <%=link_to "みんなの投稿へ", posts_path, class:'btn btn-outline-info' %>
+    <div class="offset-md-1 col-md-8">
+      <!-- 投稿一覧画面 -->
+      <%= render 'public/posts/list', posts: @posts %>
     </div>
   </div>
 </div>

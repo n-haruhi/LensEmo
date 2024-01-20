@@ -20,6 +20,10 @@ Rails.application.routes.draw do
       sessions: 'public/sessions'
     }
 
+  devise_scope :user do # ゲストログイン
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   scope module: :public do
     root to: "homes#top"
     get "about" => "homes#about"
@@ -27,18 +31,19 @@ Rails.application.routes.draw do
     get '/events', to: 'events#index' #, defaults: { format: 'json' }
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
     resources :notifications, only: [:index, :show, :update]
+    # favoriteした投稿を見るためにネストする
     resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
       resource :favorite, only: [:create, :destroy]
     end
-    resources :users, only: [:show, :edit, :update]
+    # favoriteしたユーザーを表示するためにネストする。idが必要なのでmember do
+    resources :users, only: [:show, :edit, :update] do
+      member do
+        get :favorites
+      end
+    end
     resources :articles, only: [:index, :show]
   end
 
-
-
-  devise_scope :user do # ゲストログイン
-    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
-  end
 
   devise_for :admin, skip: [:registrations, :passwords] ,
     controllers: {
