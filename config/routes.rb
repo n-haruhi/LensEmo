@@ -14,6 +14,12 @@ Rails.application.routes.draw do
     resources :articles, only: [:index, :new, :create, :show, :edit, :update]
   end
 
+  devise_for :users, skip: [:passwords],
+    controllers: {
+      registrations: "public/registrations",
+      sessions: 'public/sessions'
+    }
+
   scope module: :public do
     root to: "homes#top"
     get "about" => "homes#about"
@@ -24,16 +30,11 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
       resource :favorite, only: [:create, :destroy]
     end
-    resources :users, only: [:edit, :update]
-      get "users/mypage" => "users#show"
+    resources :users, only: [:show, :edit, :update]
     resources :articles, only: [:index, :show]
   end
 
-  devise_for :users, skip: [:passwords],
-    controllers: {
-      registrations: "public/registrations",
-      sessions: 'public/sessions'
-    }
+
 
   devise_scope :user do # ゲストログイン
     post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'

@@ -4,7 +4,7 @@
     <%= image_tag @post.get_avatar(100,100), class:"mt-3 rounded-circle"; %>
   </div>
   <div class="col d-flex align-items-center" %>
-    <%= @post.user.username %>
+    <%= link_to @post.user.username, user_path(@post.user) %>
   </div>
 
   <div class="col my-3">

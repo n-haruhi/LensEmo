@@ -29,11 +29,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-3 text-right mt-4">
-      <%= link_to "編集", edit_user_path(@user), class:'btn btn-outline-secondary' %>
+    <div class="col-2 text-right mt-4">
+      <!-- ログインしているユーザーと一致していたらボタンを表示 -->
+      <% if @user == current_user %>
+        <%= link_to "編集", edit_user_path(@user), class:'btn btn-outline-secondary' %>
+      <% end %>
     </div>
     <div class="col-2 mt-4">
-      <%=link_to "記事一覧へ", articles_path, class:'btn btn-outline-info' %>
+      <%=link_to "みんなの投稿へ", posts_path, class:'btn btn-outline-info' %>
     </div>
   </div>
 </div>
