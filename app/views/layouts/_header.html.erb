@@ -23,13 +23,13 @@
               <% end %>
             </li>
             <li>
-              <%= link_to user_path(current_user), class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-user"></i> マイページ
+              <%= link_to articles_path, class: 'nav-link text-white' do %>
+                <i class="fa-solid fa-envelopes-bulk"></i> 記事
               <% end %>
             </li>
             <li>
-              <%= link_to articles_path, class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-envelopes-bulk"></i> 記事
+              <%= link_to user_path(current_user), class: 'nav-link text-white' do %>
+                <i class="fa-solid fa-user"></i> マイページ
               <% end %>
             </li>
             <!-- 通知ボタン -->
