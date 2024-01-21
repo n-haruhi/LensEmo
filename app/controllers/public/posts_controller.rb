@@ -66,9 +66,9 @@ class Public::PostsController < ApplicationController
   end
 
   def is_matching_login_user
-    book = Book.find(params[:id])
-    unless book.user.id == current_user.id
-      redirect_to books_path
+    post = Post.find(params[:id])
+    unless post.user.id == current_user.id
+      redirect_to posts_path
     end
   end
 

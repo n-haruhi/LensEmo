@@ -1,0 +1,31 @@
+<h4 class="title"><strong><%= @user.username %>さんのプロフィール</strong></h4>
+<table class="table table-borderless">
+  <tbody>
+    <tr>
+      <th><%= image_tag @user.get_avatar(100,100), class:"mt-3 rounded-circle"; %></th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>ユーザー名</th>
+      <td><%= user.username %></td>
+    </tr>
+    <tr>
+      <th>自己紹介</th>
+      <td><%= user.introduction %></td>
+    </tr>
+  </tbody>
+</table>
+<div class="col">
+  <!-- ログインしているユーザーと一致していたらボタンを表示 -->
+  <% if @user == current_user %>
+    <div class="col">
+      <%= link_to "編集", edit_user_path(@user), class:'btn btn-outline-secondary' %>
+    </div>
+    <div class="col">
+      <%= link_to '応援した投稿', favorites_user_path(@user), class:'btn btn-outline-info' %>
+    </div>
+  <% end %>
+  <div class="col">
+    <%=link_to "みんなの投稿へ", posts_path, class:'btn btn-outline-info' %>
+  </div>
+</div>
