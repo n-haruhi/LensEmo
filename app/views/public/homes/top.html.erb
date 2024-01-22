@@ -1,25 +1,25 @@
 <div class="container">
 
   <div class="col mt-5">
-    <div class="text-center" style="font-size:20px; background-image: url('<%= asset_path('top_bg1.jpg') %>'); background-size: cover; height: 600px;" >
-      <div class="d-flex align-items-center justify-content-center" style="wifth: 900px; height: 600px;" >
-        <div style="background-color: rgba(255,255,255,.8);font-family:'Playfair Display', serif;" >
-          <p>ようこそ！ <strong>LensEmo </strong>へ<br>
+    <div class="text-center" style="font-size:20px; background-image: url('<%= asset_path('top_bg.jpg') %>'); background-size: cover; height: 600px;">
+      <div class="d-flex align-items-center justify-content-center" style="wifth: 900px; height: 600px;">
+        <!-- 背景色は白で透明度0.8。後半はフォントを指定している。 -->
+        <div style="background-color: rgba(255,255,255,.8); " >
+          <p class="mt-2">ようこそ！ LensEmo へ<br>
 
           LensEmo では、あなたが日々感じていることや出会ったもの、<br>
           あなたの気持ちや悩み、喜び等、自由に記録することができます。<br>
           さらに投稿につけたタグから同じような想いをもつ人の投稿をみることもできます。<br>
           応援ボタンを押すとエールを送ることも！<br>
           使い方にルールはありません。ここはあなたが自由に表現して良い場です。<br>
-
           ではさっそくつかってみましょう！</p>
-
-          <div class="col my-2 d-flex justify-content-center">
-            <%= link_to posts_path, class: 'btn btn-outline-light text-dark' do %>
-               <strong>はじめる </strong><i class="fa-regular fa-circle-play"></i>
+          <div class="col mb-2 d-flex justify-content-center">
+            <%= link_to new_user_registration_path, class: 'btn btn-outline-light text-dark' do %>
+              はじめる <i class="fa-regular fa-circle-play"></i>
             <% end %>
           </div>
-            <%= link_to "ゲストとしてログイン", users_guest_sign_in_path, method: :post, class: 'btn btn-outline-light text-dark' %>
+            <p class="mb-3" style="font-size:15px;">会員登録済みの方は <%= link_to "こちら", new_user_session_path %><br>
+              ちょっと覗いてく？ <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %></p>
         </div>
       </div>
     </div>

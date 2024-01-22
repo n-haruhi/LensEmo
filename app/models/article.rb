@@ -7,7 +7,8 @@ class Article < ApplicationRecord
 
   has_one_attached :article_image
 
-  validates :title, presence: true
+  # タイトルが存在すること、30字以下であること
+  validates :title, presence: true, length: { maximum: 30 }
   validates :body, presence: true
 
 # User.allで全ユーザーの一覧を取得、それぞれに対してarticleの通知を作成
@@ -18,4 +19,3 @@ class Article < ApplicationRecord
   end
 
 end
-

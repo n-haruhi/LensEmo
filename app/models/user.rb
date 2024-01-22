@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
+  # 自己紹介文は200文字以下
+  validates :introduction, length: { maximum: 200 }
 
   # get_avatarメソッド。画像のリサイズが可能。get_avatar(100, 100)等が使える。
   def get_avatar(width, height)

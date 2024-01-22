@@ -1,6 +1,6 @@
 class Admin::ArticlesController < ApplicationController
   # admin権限をもつユーザーかどうか確認
-  before_action :if_not_admin
+  # before_action :if_not_admin
 
   def index
     @articles = Article.all.page(params[:page]).per(10)
@@ -28,22 +28,22 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def update
-    article = Article.find(params[:id])
-    if article.update(article_params)
-      redirect_to admin_articles_path(article.id), notice: "投稿成功しました。"
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      redirect_to admin_articles_path(@article.id), notice: "投稿成功しました。"
     else
-      render 'edit'
+      render :edit
     end
   end
 
   private
   # admin権限をもつユーザー以外でアクションしようとするとトップページに遷移する
-  def if_not_admin
-    redirect_to root_path unless current_user.admin?
-  end
+  #def if_not_admin
+  #  redirect_to root_path unless current_user.admin?
+  #end
 
   def article_params
-    params.require(:article).permit(:username, :title, :body, :nickname, :article_image).merge(user_id: current_user.id)
+    params.require(:article).permit(:username, :title, :body, :nickname, :article_image) #.merge(user_id: current_user.id)
   end
 
 end

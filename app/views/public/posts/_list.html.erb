@@ -1,0 +1,34 @@
+<div class="col text-left">
+  <%= link_to new_post_path, class: "btn btn-outline-primary" do %>
+    書く <i class="fa-solid fa-feather"></i>
+  <% end %>
+</div>
+<div class="col my-3">
+  <table class="table">
+    <thead>
+      <tr style="background: #dad2bf;">
+        <th></th>
+        <th>ユーザー名</th>
+        <th>タイトル</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% posts.each do |post| %>
+    <tbody>
+      <tr>
+        <td><%= image_tag post.get_avatar(70,70), class:"rounded-circle"; %></td>
+        <td><%= link_to post.user.username, user_path(post.user) %></td>
+        <td><%= link_to post.title, post_path(post.id) %></td>
+        <td class="actions text-center">
+          <%= link_to "詳細", post_path(post.id), class: "btn btn-outline-info" %>
+          <!-- ログインしているユーザーと一致していたらボタンを表示 -->
+          <% if post.user == current_user %>
+            <%= link_to "編集", edit_post_path(post.id), class: "btn btn-outline-secondary mx-1" %>
+            <%= link_to "削除", post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-warning" %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>

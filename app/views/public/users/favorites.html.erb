@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div sidebar_fixed>
+        <!-- ユーザー詳細画面 -->
+        <%= render 'public/users/list_show', user: @user %>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h3 class="title">あなたが応援した投稿</h3>
+      <div class="col my-3">
+        <table class="table">
+          <thead>
+            <tr style="background: #dad2bf;">
+              <th></th>
+              <th>ユーザー名</th>
+              <th>タイトル</th>
+              <th></th>
+            </tr>
+          </thead>
+          <% @favorite_posts.each do |post|%>
+          <tbody>
+            <tr>
+              <td><%= image_tag post.get_avatar(70,70), class:"rounded-circle"; %></td>
+              <td><%= link_to post.user.username, user_path(post.user) %></td>
+              <td><%= link_to post.title, post_path(post.id) %></td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

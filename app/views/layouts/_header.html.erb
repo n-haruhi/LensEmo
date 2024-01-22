@@ -1,10 +1,10 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background: #e1987b;">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background: #776B5D;">
     <div class="container">
-      <a class="navbar-brand text-white" href="/"><%= image_tag('LensEmoLogo1.jpg', alt: "ロゴ") %></a>
+      <a class="navbar-brand mb-1" href="/"><%= image_tag('LensEmo_logo.jpg', alt: "ロゴ", width: 180, height: 50) %></a>
       <div class="mt-3 text-white">
         <% if user_signed_in? %>
-          <p>ようこそ<%= current_user.username %>さん！</p>
+          <p>おかえりなさい！<%= current_user.username %>さん</p>
         <% end %>
       </div>
 
@@ -23,20 +23,20 @@
               <% end %>
             </li>
             <li>
-              <%= link_to users_mypage_path, class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-user"></i> マイページ
+              <%= link_to articles_path, class: 'nav-link text-white' do %>
+                <i class="fa-solid fa-envelopes-bulk"></i> 記事
               <% end %>
             </li>
             <li>
-              <%= link_to articles_path, class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-envelopes-bulk"></i> 記事
+              <%= link_to user_path(current_user), class: 'nav-link text-white' do %>
+                <i class="fa-solid fa-user"></i> マイページ
               <% end %>
             </li>
             <!-- 通知ボタン -->
             <li class="dropdown">
               <button class="btn dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa-solid fa-bell"></i> 通知
-                <span class="badge badge-danger"><%= current_user.notifications.where(read: false).count %></span>
+                <span class="badge rounded-pill bg-primary"><%= current_user.notifications.where(read: false).count %></span>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <% if current_user.notifications.where(read: false).any? %>
@@ -77,15 +77,11 @@
                 <i class="fas fa-sign-out-alt"></i> ログアウト
               <% end %>
             </li>
+
           <% else %>
             <li>
               <%= link_to about_path, class: 'nav-link text-white' do %>
                 <i class="fas fa-link"></i> About
-              <% end %>
-            </li>
-            <li>
-              <%= link_to articles_path, class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-envelopes-bulk"></i> 記事一覧
               <% end %>
             </li>
             <li>

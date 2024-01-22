@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all.page(params[:page]).per(10)
@@ -16,7 +17,6 @@ class Public::PostsController < ApplicationController
   end
 
   def new
-    # Viewへ渡すためのインスタンス変数に空のModelオブジェクトを生成
     @post = Post.new
   end
 
@@ -34,6 +34,7 @@ class Public::PostsController < ApplicationController
   def show
     #postsテーブルの中にあるidが〇〇のレコードを取得してくる
     @post = Post.find(params[:id])
+    @user = @post.user
   end
 
   def edit
@@ -41,9 +42,10 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
-    if post.update(post_params)
-      redirect_to post_path(post.id), notice: "投稿が更新されました。"
+    @post = Post.find(params[:id])
+    @post.user_id = current_user.id
+    if @post.update(post_params)
+      redirect_to post_path(@post.id), notice: "投稿が更新されました。"
     else
       render 'edit'
     end
@@ -61,6 +63,13 @@ class Public::PostsController < ApplicationController
   def post_params
     # emotionとtag_idsは複数入ってくる可能性のあるものなので配列の形式で記述
     params.require(:post).permit(:title, { emotion: [] }, :body, :post_image, tag_ids: [])
+  end
+
+  def is_matching_login_user
+    post = Post.find(params[:id])
+    unless post.user.id == current_user.id
+      redirect_to posts_path
+    end
   end
 
 end

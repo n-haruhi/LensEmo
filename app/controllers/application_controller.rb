@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  # ユーザー側ログイン認証。exceptによって、topとaboutはこの処理から除外される
-  before_action :authenticate_user!, except: [:top, :about, :index], unless: :admin_url
-  # 管理者側ログイン認証。/adminが含まれているパスはすべてこの認証を通る。
+  # /adminを含むパスじゃなかったらユーザー側ログイン認証。topとaboutは除外
+  before_action :authenticate_user!, except: [:top, :about], unless: :admin_url
+  # /adminを含むパスなら、管理者側ログイン認証。
   before_action :authenticate_admin!, if: :admin_url
   # deviseを利用する機能(ユーザー登録やログイン認証等)が行われる前にメソッド実行
   before_action :configure_permitted_parameters, if: :devise_controller?

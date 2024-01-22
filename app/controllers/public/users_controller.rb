@@ -1,23 +1,30 @@
 class Public::UsersController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update]
 
   def show
-    # @user = User.find(current_user.id)
-    @user = current_user
+    @user = User.find(params[:id])
+    @posts = @user.posts # 個人が投稿したものすべてを表示できる
   end
 
   def edit
-    # @user = User.find(params[:id])
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
     @user = current_user
     if @user.update(user_params)
-      redirect_to users_mypage_path(current_user), notice: "更新成功しました。" # 自身のマイページ(show)へ
+      redirect_to user_path(@user.id), notice: "更新成功しました。" # 自身のマイページ(show)へ
     else
       render 'edit'
     end
+  end
+
+  # favoriteテーブルから@userのuser_idを見つけてくる
+  def favorites
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
   end
 
   private
@@ -25,5 +32,13 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:avatar, :username, :email, :introduction)
   end
+
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to user_path(current_user.id)
+    end
+  end
+
 
 end

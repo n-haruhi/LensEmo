@@ -15,8 +15,11 @@ class Post < ApplicationRecord
   has_one_attached :post_image
   has_one_attached :emotion_image
 
-  # titleが存在すること
-  validates :title, presence: true
+  # titleが存在すること, 30字以下であること
+  validates :title, presence: true, length: { maximum: 30 }
+  # 本文は400文字以下
+  # validates :body, length: { maximum: 400 }
+
   # bodyかemotionどちらか一方必須。両方存在していても良い。以下に定義有。
   validate :require_either_emotion_or_body
 
@@ -39,7 +42,7 @@ class Post < ApplicationRecord
   # bodyが空、且つ、emotionも空ならエラーメッセージ=>両方空ならエラーというカスタムのバリデーション。
   def require_either_emotion_or_body
     if emotion.blank? && body.blank?
-      errors.add(:base, "気持ちか本文のどちらか一方は必須です。")
+      errors.add(:base, "気持ちか内容どちらか一方は必須です。")
     end
   end
 
