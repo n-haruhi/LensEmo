@@ -11,8 +11,8 @@
   <% end %>
 
   <%= form_with model: @post do |f| %>
-  <div class="col mt-4 mb-3">
-    <%= f.text_field :title, placeholder: "タイトル" %>
+  <div class="col-lg-3 my-3">
+    <%= f.text_field :title, placeholder: "タイトル", class:'form-control' %>
   </div>
 
   <div class="col-md-7 my-3">
@@ -70,11 +70,11 @@
     <% end %>
   </div>
 
-  <div class="col my-3">
+  <div class="col-lg-7 my-3">
     <h5><strong>内容</strong></h5>
-    <%= f.text_area :body, rows: 7, cols: 90, placeholder: "今日はどんなことがありましたか？" %>
+    <%= f.text_area :body, placeholder: "今日はどんなことがありましたか？", rows: 5, class:'form-control' %>
   </div>
-  <div class="col my-3">
+  <div class="col mt-3">
     <h5><strong>タグ <i class="fa-solid fa-tags"></i></strong></h5>
     <!-- 設定したデフォルトタグをここで表示 -->
     <div class='form-group'>
@@ -92,7 +92,14 @@
       </div>
     </div>
   </div>
-  <div class="col my-4">
+  <div class="col-lg-4 mb-3">
+    <!-- タグ追加 -->
+    <%= form_tag({controller:"posts", action:"index"}, method: :get) do %>
+      <%= text_field_tag :tag %>
+      <%= submit_tag 'タグを追加' %>
+    <% end %>
+  </div>
+  <div class="col mt-3">
     <%= f.submit '投稿', class: "btn btn-outline-success btn-sm" %>
   </div>
   <% end %>

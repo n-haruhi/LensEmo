@@ -1,2 +1,35 @@
-<h1>Admin::Tags#index</h1>
-<p>Find me in app/views/admin/tags/index.html.erb</p>
+<div class="container">
+  <h3><strong>タグ <i class="fa-solid fa-tags"> 一覧・追加</i></strong></h3>
+  <div class="col my-3">
+    <div class="row">
+      <div class="col-lg-7 my-4">
+        <%= form_with model: @tag, url: admin_tags_path, method: :post, local: true do |f| %>
+          <%= f.label :name, "タグ名" %>
+          <%= f.text_field :name %>
+          <%= f.submit "タグを追加", class:"btn btn-outline-success" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <table class="table">
+          <thead style="background: #dad2bf;">
+            <tr>
+              <th>タグ</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @tags.each do |tag| %>
+            <tr>
+              <td><%= tag.name %></td>
+              <td class="text-right"><%= link_to "編集する", edit_admin_tag_path(tag), class:"btn btn-outline-secondary" %></td>
+            <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,10 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    # タグ追加
+    if params[:tag]
+      Tag.create(name: params[:tag])
+    end
   end
 
   def create

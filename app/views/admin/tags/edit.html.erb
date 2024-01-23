@@ -1,2 +1,16 @@
-<h1>Admin::Tags#edit</h1>
-<p>Find me in app/views/admin/tags/edit.html.erb</p>
+<div class="container">
+  <h3><strong>タグ編集</strong></h3>
+  <div class="row mb-5">
+    <div class="col-lg-10 my-4">
+      <%= form_with model: @tag, url: admin_tag_path, method: :patch, local: true do |f| %>
+        <div class="field row">
+          <label for="inputName", class="col-lg-2 col-form-label"><strong>タグ名</strong></label>
+          <div class="col-lg-3">
+            <%= f.text_field :name, class:'form-control', id:'inputName' %>
+          </div>
+          <%= f.submit "変更を保存", class: "btn btn-outline-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
