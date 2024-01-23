@@ -1,18 +1,7 @@
 <div class="container">
-  <h3 class="d-flex justify-content-center">みんなの投稿</h3>
   <div class="row">
-    <div class="col-md-2 mt-2">
-      <!-- タグ検索。タグ検索用の情報を送信する項目。タグが複数でも検索可能に-->
-      <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
-          <% Tag.all.each do |t| %>
-            <%= check_box :tag_ids, t.name %><%= t.name %>
-          <% end %>
-          <%= submit_tag '検索' %>
-      <% end %>
-      <!-- ここまで -->
-    </div>
-
     <div class="col-md-10 mt-2">
+      <h3 class="d-flex justify-content-center">みんなの投稿</h3>
       <div class="col text-right">
         <%= link_to new_post_path, class: "btn btn-outline-primary" do %>
           書く <i class="fa-solid fa-feather"></i>
@@ -51,5 +40,18 @@
         <%= paginate @posts %>
       </div>
     </div>
+
+    <div class="col-md-2" style="margin-top: 120px;">
+      <!-- タグ検索。タグ検索用の情報を送信する項目。タグが複数でも検索可能に-->
+      <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+
+          <% Tag.all.each do |t| %>
+            <%= check_box :tag_ids, t.name %><%= t.name %><br>
+          <% end %>
+          <%= submit_tag '検索' %>
+      <% end %>
+      <!-- ここまで -->
+    </div>
+
   </div>
 </div>
