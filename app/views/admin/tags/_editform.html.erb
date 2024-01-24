@@ -1,0 +1,8 @@
+<h3>編集</h3>
+<div class="col my-3">
+  <%= form_with model: @tag do |f| %>
+    <label for="inputName", class="col-form-label">タグ名</label>
+    <%= f.text_field :name, id:'inputName', class:"mx-2" %>
+    <%= f.submit "変更を保存", class: "btn btn-sm btn-outline-success" %>
+  <% end %>
+</div>

@@ -11,14 +11,14 @@
   <% end %>
 
   <%= form_with model: @article, url: admin_articles_path do |f| %>
-  <div class="col-lg-3 mt-4 mb-3">
+  <div class="col-lg-3 my-3">
     <%= f.text_field :title, class:'form-control', placeholder: "タイトル" %>
   </div>
-  <div class="col my-3">
+  <div class="col-lg-8">
     <h5><strong>本文</strong></h5>
-    <%= f.text_area :body, rows: 10, cols: 90, placeholder: "どんな記事を書きますか？" %><br>
+    <%= f.text_area :body, rows: 10, cols: 90, class:'form-control', placeholder: "どんな記事を書きますか？" %><br>
   </div>
-  <div class="col my-3">
+  <div class="col mt-2">
     <%= f.submit '投稿', class: "btn btn-outline-success btn-sm" %>
   </div>
   <% end %>

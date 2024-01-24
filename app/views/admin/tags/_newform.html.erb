@@ -1,0 +1,8 @@
+<h3>作成</h3>
+<div class="col my-3">
+  <%= form_with model: @tag, url: admin_tags_path, method: :post, local: true do |f| %>
+    <%= f.label :name, "タグ名" %>
+    <%= f.text_field :name, class:"mx-2" %>
+    <%= f.submit "タグを追加", class:"btn btn-sm btn-outline-success" %>
+  <% end %>
+</div>

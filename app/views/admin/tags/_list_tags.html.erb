@@ -1,0 +1,17 @@
+<h3>タグ <i class="fa-solid fa-tags"></i> 一覧</h3>
+<table class="table">
+  <thead style="background: #dad2bf;">
+    <tr>
+      <th>タグ</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tags.each do |tag| %>
+    <tr>
+      <td><%= tag.name %></td>
+      <td class="text-right"><%= link_to "編集する", edit_admin_tag_path(tag), class:"btn btn-outline-secondary" %></td>
+    <% end %>
+    </tr>
+  </tbody>
+</table>

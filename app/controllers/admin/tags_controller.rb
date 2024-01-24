@@ -17,6 +17,7 @@ class Admin::TagsController < ApplicationController
 
   def edit
     @tag = Tag.find(params[:id])
+    @tags = Tag.all
   end
 
   def update
