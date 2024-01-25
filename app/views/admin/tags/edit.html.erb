@@ -1,2 +1,14 @@
-<h1>Admin::Tags#edit</h1>
-<p>Find me in app/views/admin/tags/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <div sidebar_fixed>
+        <!-- タグ一覧画面 -->
+        <%= render 'admin/tags/list_tags', tags: @tags %>
+      </div>
+    </div>
+    <div class="offset-md-1 col-md-6">
+      <!-- タグ編集画面 -->
+      <%= render 'admin/tags/editform', tag: @tag %>
+    </div>
+  </div>
+</div>

@@ -11,70 +11,70 @@
   <% end %>
 
   <%= form_with model: @post do |f| %>
-  <div class="col mt-4 mb-3">
-    <%= f.text_field :title, placeholder: "タイトル" %>
+  <div class="col-lg-3 my-3">
+    <%= f.text_field :title, placeholder: "タイトル", class:'form-control' %>
   </div>
 
   <div class="col-md-7 my-3">
     <h5><strong>気持ち</strong></h5>
       <a>あなたの気持ちをきかせてください</a><br>
-    <%= f.label :emotion_happy, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "happy", nil %>
+    <%= f.label :emotion_happiness, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "happiness" %>
       <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "幸福" %>
     <% end %>
-    <%= f.label :emotion_sad, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
-      <%= image_tag("sad.png", width: 80, height: 80) %><br>
+    <%= f.label :emotion_love, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "love" %>
+      <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "愛情" %>
     <% end %>
-    <%= f.label :emotion_happy, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "happy", nil %>
+    <%= f.label :emotion_joy, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "joy" %>
       <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "喜び" %>
     <% end %>
-    <%= f.label :emotion_sad, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
-      <%= image_tag("sad.png", width: 80, height: 80) %><br>
+    <%= f.label :emotion_calm, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "calm" %>
+      <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "穏やか" %>
     <% end %>
-    <%= f.label :emotion_happy, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "happy", nil %>
+    <%= f.label :emotion_hope, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "hope" %>
       <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "希望" %>
     <% end %>
-    <%= f.label :emotion_sad, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
+    <%= f.label :emotion_anxiety, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "anxiety" %>
       <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "不安" %>
     <% end %>
-    <%= f.label :emotion_sad, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
+    <%= f.label :emotion_sadness, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "sadness" %>
       <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "悲しみ" %>
     <% end %>
-    <%= f.label :emotion_sad, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
+    <%= f.label :emotion_fear, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "fear" %>
       <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "恐怖" %>
     <% end %>
-    <%= f.label :emotion_happy, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "happy", nil %>
-      <%= image_tag("happy.png", width: 80, height: 80) %><br>
+    <%= f.label :emotion_disgust, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "disgust" %>
+      <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "嫌悪" %>
     <% end %>
-    <%= f.label :emotion_sad, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
+    <%= f.label :emotion_anger, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "anger" %>
       <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "怒り" %>
     <% end %>
   </div>
 
-  <div class="col my-3">
+  <div class="col-lg-7 my-3">
     <h5><strong>内容</strong></h5>
-    <%= f.text_area :body, rows: 7, cols: 90, placeholder: "今日はどんなことがありましたか？" %>
+    <%= f.text_area :body, placeholder: "今日はどんなことがありましたか？", rows: 5, class:'form-control' %>
   </div>
-  <div class="col my-3">
+  <div class="col mt-3">
     <h5><strong>タグ <i class="fa-solid fa-tags"></i></strong></h5>
     <!-- 設定したデフォルトタグをここで表示 -->
     <div class='form-group'>
@@ -92,7 +92,7 @@
       </div>
     </div>
   </div>
-  <div class="col my-4">
+  <div class="col mt-3">
     <%= f.submit '投稿', class: "btn btn-outline-success btn-sm" %>
   </div>
   <% end %>

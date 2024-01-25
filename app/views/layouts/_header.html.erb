@@ -73,6 +73,11 @@
               <% end %>
             </li>
             <li>
+              <%= link_to admin_tags_path, class: 'nav-link text-white' do %>
+                <i class="fa-solid fa-tags"></i> タグ
+              <% end %>
+            </li>
+            <li>
               <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-white' do %>
                 <i class="fas fa-sign-out-alt"></i> ログアウト
               <% end %>

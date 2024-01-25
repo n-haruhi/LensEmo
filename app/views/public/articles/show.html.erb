@@ -1,22 +1,20 @@
 <div class="container">
-  <h3>管理者　記事詳細</h3>
+  <h3>
+    <%= link_to articles_path, class: "btn btn-outline-primary" do %>
+      <i class="fa-solid fa-chevron-left"></i> 一覧
+    <% end %>
+  </h3>
 
-  <div class="col mt-4 mb-3">
-    <p><%= @article.user.username %></p>
+  <div class="col mt-4 mb-3 d-flex justify-content-center">
+    <h4><%= @article.title %></h4>
   </div>
-  <div class="col my-3">
-    <h5><strong>タイトル</strong></h5>
-    <p><%= @article.title %></p>
+
+  <div class="col text-right text-secondary">
+    <a><i class="fa-regular fa-user"></i> <%= @article.user.username %></a> <a><i class="fa-regular fa-clock"></i> 投稿日時：<%= @article.created_at.strftime('%Y/%m/%d') %></a>
   </div>
-  <div class="col my-3">
-    <h5><strong>本文</strong></h5>
+
+  <div class="col-md-10 offset-1 mt-3">
     <p><%= @article.body %></p>
   </div>
-  <div class="col my-3">
-    <p>投稿日時：<%= @article.created_at.strftime('%Y/%m/%d') %></p>
-  </div>
 
-  <div class="col my-4">
-    <%= link_to "一覧へ", articles_path, class: "btn btn-outline-primary" %>
-  </div>
 </div>
