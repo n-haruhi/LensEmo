@@ -1,17 +1,26 @@
 <h3>タグ <i class="fa-solid fa-tags"></i> 一覧</h3>
-<table class="table">
-  <thead style="background: #dad2bf;">
-    <tr>
-      <th>タグ</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tags.each do |tag| %>
-    <tr>
-      <td><%= tag.name %></td>
-      <td class="text-right"><%= link_to "編集する", edit_admin_tag_path(tag), class:"btn btn-outline-secondary" %></td>
-    <% end %>
-    </tr>
-  </tbody>
-</table>
+
+<div class="col text-right">
+  <%= link_to admin_tags_path, class: "btn btn-sm btn-outline-primary" do %>
+    作成 <i class="fa-solid fa-feather"></i>
+  <% end %>
+</div>
+
+<div class="col mt-3">
+  <table class="table">
+    <thead style="background: #dad2bf;">
+      <tr>
+        <th>タグ</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tags.each do |tag| %>
+      <tr>
+        <td><%= tag.name %></td>
+        <td class="text-right"><%= link_to "編集する", edit_admin_tag_path(tag), class:"btn btn-outline-secondary" %></td>
+      <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
