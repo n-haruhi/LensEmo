@@ -18,53 +18,53 @@
   <div class="col-md-7 my-3">
     <h5><strong>気持ち</strong></h5>
       <a>あなたの気持ちをきかせてください</a><br>
-    <%= f.label :emotion_happy, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "happy", nil %>
+    <%= f.label :emotion_happiness, class: "checkbox-image" do %>
+      <%= f.check_box :emotion, { multiple: true }, "happiness", nil %>
       <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "幸福" %>
     <% end %>
-    <%= f.label :emotion_sad, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
-      <%= image_tag("sad.png", width: 80, height: 80) %><br>
+    <%= f.label :emotion_love, class: "checkbox-image" do %>
+      <%= f.check_box :emotion, { multiple: true }, "love", nil %>
+      <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "愛情" %>
     <% end %>
-    <%= f.label :emotion_happy, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "happy", nil %>
+    <%= f.label :emotion_joy, class: "checkbox-image" do %>
+      <%= f.check_box :emotion, { multiple: true }, "joy", nil %>
       <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "喜び" %>
     <% end %>
-    <%= f.label :emotion_sad, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
-      <%= image_tag("sad.png", width: 80, height: 80) %><br>
+    <%= f.label :emotion_calm, class: "checkbox-image" do %>
+      <%= f.check_box :emotion, { multiple: true }, "calm", nil %>
+      <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "穏やか" %>
     <% end %>
-    <%= f.label :emotion_happy, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "happy", nil %>
+    <%= f.label :emotion_hope, class: "checkbox-image" do %>
+      <%= f.check_box :emotion, { multiple: true }, "hope", nil %>
       <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "希望" %>
     <% end %>
-    <%= f.label :emotion_sad, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
+    <%= f.label :emotion_anxiety, class: "checkbox-image" do %>
+      <%= f.check_box :emotion, { multiple: true }, "anxiety", nil %>
       <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "不安" %>
     <% end %>
-    <%= f.label :emotion_sad, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
+    <%= f.label :emotion_sadness, class: "checkbox-image" do %>
+      <%= f.check_box :emotion, { multiple: true }, "sadness", nil %>
       <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "悲しみ" %>
     <% end %>
-    <%= f.label :emotion_sad, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
+    <%= f.label :emotion_fear, class: "checkbox-image" do %>
+      <%= f.check_box :emotion, { multiple: true }, "fear", nil %>
       <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "恐怖" %>
     <% end %>
-    <%= f.label :emotion_happy, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "happy", nil %>
-      <%= image_tag("happy.png", width: 80, height: 80) %><br>
+    <%= f.label :emotion_disgust, class: "checkbox-image" do %>
+      <%= f.check_box :emotion, { multiple: true }, "disgust", nil %>
+      <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "嫌悪" %>
     <% end %>
-    <%= f.label :emotion_sad, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sad", nil %>
+    <%= f.label :emotion_anger, class: "checkbox-image" do %>
+      <%= f.check_box :emotion, { multiple: true }, "anger", nil %>
       <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "怒り" %>
     <% end %>
@@ -91,13 +91,6 @@
         <% end %>
       </div>
     </div>
-  </div>
-  <div class="col-lg-4 mb-3">
-    <!-- タグ追加 -->
-    <%= form_tag({controller:"posts", action:"index"}, method: :get) do %>
-      <%= text_field_tag :tag %>
-      <%= submit_tag 'タグを追加' %>
-    <% end %>
   </div>
   <div class="col mt-3">
     <%= f.submit '投稿', class: "btn btn-outline-success btn-sm" %>

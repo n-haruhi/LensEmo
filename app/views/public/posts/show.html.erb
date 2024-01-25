@@ -24,12 +24,14 @@
       </div>
     </div>
 
-      <h4 class="mt-4 mb-3 d-flex justify-content-center">
-        <strong><%= @post.title %></strong> <%= @post.emotion %>
+      <h4 class="mt-4 mb-3 d-flex justify-content-center align-items-center">
+        <strong><%= @post.title %></strong>
+        <%= image_tag @post.get_emotion_image, width: 70, height: 70, class:"rounded-circle"; %>
       </h4>
 
       <div class="col text-right text-secondary">
-        <a><i class="fa-regular fa-clock"></i> 投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></a>
+        <a><i class="fa-regular fa-clock"></i> 投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></a><br>
+        <%= @post.emotion %> 
         <!-- 投稿で選んだタグの表示。複数選択でも表示できるように記述 -->
         <% @post.tags.each do |tag| %>
           <i class="fa-solid fa-tags"></i> <span><%= tag.name %></span>

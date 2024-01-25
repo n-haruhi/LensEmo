@@ -18,10 +18,6 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
-    # タグ追加
-    if params[:tag]
-      Tag.create(name: params[:tag])
-    end
   end
 
   def create
@@ -66,7 +62,7 @@ class Public::PostsController < ApplicationController
 
   def post_params
     # emotionとtag_idsは複数入ってくる可能性のあるものなので配列の形式で記述
-    params.require(:post).permit(:title, { emotion: [] }, :body, :post_image, tag_ids: [])
+    params.require(:post).permit(:title, :body, { emotion: [] }, :emotion_image, tag_ids: [])
   end
 
   def is_matching_login_user

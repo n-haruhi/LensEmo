@@ -31,6 +31,24 @@ class Post < ApplicationRecord
     avatar.variant(resize_to_limit: [width, height]).processed
   end
 
+  # 感情の画像を条件で表示する
+  def get_emotion_image
+    case true
+    when emotion.include?("happiness") then
+      "happy.png"
+    when emotion.include?("love") then
+      "happy.png"
+    when emotion.include?("joy") then
+      "happy.png"
+    when emotion.include?("calm") then
+      "happy.png"
+    when emotion.include?("hope") then
+      "happy.png"
+    else
+      "sad.png"
+    end
+  end
+
     # 引数で渡されたユーザidがFavoritesテーブル内に存在するかどうかを調べtrueかfalseを返す
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
