@@ -30,12 +30,12 @@
       </h4>
 
       <div class="col text-right text-secondary">
-        <a><i class="fa-regular fa-clock"></i> 投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></a><br>
-        <%= @post.emotion %> 
+        <%= @post.emotion %>
         <!-- 投稿で選んだタグの表示。複数選択でも表示できるように記述 -->
         <% @post.tags.each do |tag| %>
-          <i class="fa-solid fa-tags"></i> <span><%= tag.name %></span>
+          <i class="fa-solid fa-tags"></i> <span><%= tag.name %></span><br>
         <% end %>
+        <a><i class="fa-regular fa-clock"></i> 投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></a>
       </div>
 
       <div class="col-md-10 offset-1 my-3">

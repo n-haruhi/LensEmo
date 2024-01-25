@@ -19,52 +19,52 @@
     <h5><strong>気持ち</strong></h5>
       <a>あなたの気持ちをきかせてください</a><br>
     <%= f.label :emotion_happiness, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "happiness", nil %>
+      <%= f.radio_button :emotion, "happiness" %>
       <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "幸福" %>
     <% end %>
     <%= f.label :emotion_love, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "love", nil %>
+      <%= f.radio_button :emotion, "love" %>
       <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "愛情" %>
     <% end %>
     <%= f.label :emotion_joy, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "joy", nil %>
+      <%= f.radio_button :emotion, "joy" %>
       <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "喜び" %>
     <% end %>
     <%= f.label :emotion_calm, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "calm", nil %>
+      <%= f.radio_button :emotion, "calm" %>
       <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "穏やか" %>
     <% end %>
     <%= f.label :emotion_hope, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "hope", nil %>
+      <%= f.radio_button :emotion, "hope" %>
       <%= image_tag("happy.png", width: 80, height: 80) %><br>
       <%= "希望" %>
     <% end %>
     <%= f.label :emotion_anxiety, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "anxiety", nil %>
+      <%= f.radio_button :emotion, "anxiety" %>
       <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "不安" %>
     <% end %>
     <%= f.label :emotion_sadness, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "sadness", nil %>
+      <%= f.radio_button :emotion, "sadness" %>
       <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "悲しみ" %>
     <% end %>
     <%= f.label :emotion_fear, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "fear", nil %>
+      <%= f.radio_button :emotion, "fear" %>
       <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "恐怖" %>
     <% end %>
     <%= f.label :emotion_disgust, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "disgust", nil %>
+      <%= f.radio_button :emotion, "disgust" %>
       <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "嫌悪" %>
     <% end %>
     <%= f.label :emotion_anger, class: "checkbox-image" do %>
-      <%= f.check_box :emotion, { multiple: true }, "anger", nil %>
+      <%= f.radio_button :emotion, "anger" %>
       <%= image_tag("sad.png", width: 80, height: 80) %><br>
       <%= "怒り" %>
     <% end %>
