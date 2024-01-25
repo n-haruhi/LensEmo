@@ -7,39 +7,40 @@
       </div>
     </div>
     <div class="col-md-8">
-      <h3 class="mb-3 d-flex justify-content-center">投稿詳細</h3>
+    <!-- 投稿詳細 -->
+    <div class="row">
+      <div class="col text-left">
+        <%= link_to posts_path, class: "btn btn-outline-primary" do %>
+          <i class="fa-solid fa-chevron-left"></i> 一覧
+        <% end %>
+      </div>
 
-      <table class="table">
-        <tbody>
-          <tr>
-            <td><strong><%= @post.title %></strong></td>
-            <td><%= @post.emotion %></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="col text-right">
+        <!-- ログインしているユーザーと一致していたらボタンを表示 -->
+        <% if @post.user == current_user %>
+          <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-outline-secondary" %>
+          <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-outline-warning" %>
+        <% end %>
+      </div>
+    </div>
 
-            <h5 class="col my-3 d-flex justify-content-center">内容</h5>
+      <h4 class="mt-4 mb-3 d-flex justify-content-center">
+        <strong><%= @post.title %></strong> <%= @post.emotion %>
+      </h4>
 
-            <p><%= @post.body %></p>
+      <div class="col text-right text-secondary">
+        <a><i class="fa-regular fa-clock"></i> 投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></a>
+        <!-- 投稿で選んだタグの表示。複数選択でも表示できるように記述 -->
+        <% @post.tags.each do |tag| %>
+          <i class="fa-solid fa-tags"></i> <span><%= tag.name %></span>
+        <% end %>
+      </div>
 
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <!-- 投稿で選んだタグの表示。複数選択でも表示できるように記述 -->
-              <h5><strong>タグ <i class="fa-solid fa-tags"></i></strong></h5>
-              <% @post.tags.each do |tag| %>
-                <span><%= tag.name %></span>
-              <% end %>
-            </td>
-            <td>
-              <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="col-md-10 offset-1 my-3">
+        <p><%= @post.body %></p>
+      </div>
 
-      <div class="col mt-4">
+      <div class="col text-right" style="margin-top: 40px;">
         <!-- いいね機能 -->
         <% if @post.favorited_by?(current_user) %>
           <h5>
@@ -48,7 +49,7 @@
               <a>応援しています</a>
             <% end %>
           </h5>
-          <% else %>
+        <% else %>
           <h5>
             <%= link_to post_favorite_path(@post), method: :post do %>
               <i class="fa-regular fa-flag"></i> <%= @post.favorites.count %>
@@ -56,14 +57,6 @@
             <% end %>
           </h5>
         <% end %>
-      </div>
-      <div class="col my-3">
-        <!-- ログインしているユーザーと一致していたらボタンを表示 -->
-        <% if @post.user == current_user %>
-          <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-outline-secondary" %>
-          <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-outline-warning" %>
-        <% end %>
-        <%= link_to "一覧へ", posts_path, class: "btn btn-outline-primary" %>
       </div>
     </div>
   </div>
