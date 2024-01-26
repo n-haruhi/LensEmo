@@ -44,8 +44,16 @@ class Post < ApplicationRecord
       "sadness.png"
     when emotion.include?("anxiety") then
       "anxiety.png"
+    when emotion.include?("calm") then
+      "calm.png"
+    when emotion.include?("hope") then
+      "hope.png"
+    when emotion.include?("joy") then
+      "joy.png"
+    when emotion.include?("love") then
+      "love1.png"
     else
-      "happy.png"
+      "happiness.png"
     end
   end
 
