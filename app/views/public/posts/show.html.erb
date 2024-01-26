@@ -24,17 +24,19 @@
       </div>
     </div>
 
-      <h4 class="mt-4 mb-3 d-flex justify-content-center align-items-center">
+      <h4 class="my-3 d-flex justify-content-center align-items-center">
         <strong><%= @post.title %></strong>
-        <%= image_tag @post.get_emotion_image, width: 40, height: 40, class:"rounded-circle"; %>
+        <%= image_tag @post.get_emotion_image, width: 40, height: 40, style: 'margin-left: 10px;' %>
       </h4>
 
       <div class="col text-right text-secondary">
         <%= @post.emotion %>
         <!-- 投稿で選んだタグの表示。複数選択でも表示できるように記述 -->
         <% @post.tags.each do |tag| %>
-          <i class="fa-solid fa-tags"></i> <span><%= tag.name %></span><br>
+          <i class="fa-solid fa-tags"></i> <span><%= tag.name %></span>
         <% end %>
+      </div>
+      <div class="col text-right text-secondary">
         <a><i class="fa-regular fa-clock"></i> 投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></a>
       </div>
 
@@ -47,8 +49,8 @@
         <% if @post.favorited_by?(current_user) %>
           <h5>
             <%= link_to post_favorite_path(@post), method: :delete do %>
-              <i class="fa-solid fa-flag"></i> <%= @post.favorites.count %>
-              <a>応援しています</a>
+              <i class="fa-solid fa-flag"></i><%= " ))" %> <%= @post.favorites.count %>
+              <a>応援中</a>
             <% end %>
           </h5>
         <% else %>
