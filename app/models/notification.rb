@@ -10,7 +10,7 @@ class Notification < ApplicationRecord
   # notification_typeの種類に応じて出力する内容を変更
   def message
     if notifiable_type === "Favorite"
-      "投稿した#{notifiable.post.title}が#{notifiable.user.username}さんにいいねされました"
+      "投稿した「#{notifiable.post.title}」が#{notifiable.user.username}さんにいいねされました"
     elsif notifiable_type === "Article"
       "#{notifiable.user.username}さんが#{notifiable.title}を投稿しました"
     end

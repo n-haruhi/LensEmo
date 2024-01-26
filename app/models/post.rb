@@ -34,18 +34,26 @@ class Post < ApplicationRecord
   # 感情の画像を条件で表示する
   def get_emotion_image
     case true
-    when emotion.include?("happiness") then
-      "happy.png"
-    when emotion.include?("love") then
-      "happy.png"
-    when emotion.include?("joy") then
-      "happy.png"
+    when emotion.include?("anger") then
+      "anger.png"
+    when emotion.include?("disgust") then
+      "disgust.png"
+    when emotion.include?("fear") then
+      "fear.png"
+    when emotion.include?("sadness") then
+      "sadness.png"
+    when emotion.include?("anxiety") then
+      "anxiety.png"
     when emotion.include?("calm") then
-      "happy.png"
+      "calm.png"
     when emotion.include?("hope") then
-      "happy.png"
+      "hope.png"
+    when emotion.include?("joy") then
+      "joy.png"
+    when emotion.include?("love") then
+      "love1.png"
     else
-      "sad.png"
+      "happiness.png"
     end
   end
 
