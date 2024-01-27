@@ -26,7 +26,6 @@
             <!-- ログインしているユーザーと一致していたらボタンを表示 -->
             <% if article.user == current_user %>
               <%= link_to "編集", edit_admin_article_path(article.id), class: "btn btn-outline-secondary mx-1" %>
-              <%= link_to "削除", admin_article_path(article.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-warning" %>
             <% end %>
           </td>
         </tr>

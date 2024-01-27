@@ -1,4 +1,6 @@
 class Admin::TagsController < ApplicationController
+  # admin権限をもつユーザーかどうか確認
+  before_action :if_not_admin
 
   def index
     @tags = Tag.all
@@ -29,14 +31,16 @@ class Admin::TagsController < ApplicationController
     end
   end
 
-  # 既存のタグを管理者が消してしまうのは良くないと思うので今回は作成しない。
-  def destroy
+
+  private
+  # admin権限をもつユーザー以外でアクションしようとするとトップページに遷移する
+  def if_not_admin
+    redirect_to root_path unless current_user.admin?
   end
 
   def tag_params
     # tag_idsは複数入ってくる可能性のあるものなので配列の形式で記述
     params.require(:tag).permit(:name, tag_ids: [])
   end
-
 
 end

@@ -17,44 +17,73 @@
         <div class="col text-right">
           <ul class="navbar-nav justify-content-end">
           <% if user_signed_in? %>
-            <li>
-              <%= link_to posts_path, class: 'nav-link text-white' do %>
-                <i class="fas fa-home"></i> Home
-              <% end %>
-            </li>
-            <li>
-              <%= link_to articles_path, class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-envelopes-bulk"></i> 記事
-              <% end %>
-            </li>
-            <li>
-              <%= link_to user_path(current_user), class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-user"></i> マイページ
-              <% end %>
-            </li>
-            <!-- 通知ボタン -->
-            <li class="dropdown">
-              <button class="btn dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa-solid fa-bell"></i> 通知
-                <span class="badge rounded-pill bg-primary"><%= current_user.notifications.where(read: false).count %></span>
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <% if current_user.notifications.where(read: false).any? %>
-                  <small class="dropdown-item disabled">直近5件の未読の通知を表示しています</small>
-                  <% current_user.notifications.where(read: false).limit(5).order(created_at: :desc).each do |notification| %>
-                    <%= link_to notification.message, notification, method: :patch, class: "dropdown-item" %>
-                  <% end %>
-                <% else %>
-                  <span class="dropdown-item disabled">未読の通知はありません</span>
+            <!-- userがsign inした場合、そのユーザーがadmin権限をもつかどうかで表示を変える -->
+            <% if current_user.admin? %>
+              <li>
+                <%= link_to admin_root_path, class: 'nav-link text-white' do %>
+                  <i class="fas fa-home"></i> Home
                 <% end %>
-              </div>
-            </li>
-            <!-- ここまで -->
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white' do %>
-                <i class="fas fa-sign-out-alt"></i> ログアウト
-              <% end %>
-            </li>
+              </li>
+              <li>
+                <%= link_to admin_posts_path, class: 'nav-link text-white' do %>
+                  <i class="fa-solid fa-calendar-days"></i> 投稿一覧
+                <% end %>
+              </li>
+              <li>
+                <%= link_to admin_users_path, class: 'nav-link text-white' do %>
+                  <i class="fas fa-users"></i> 会員一覧
+                <% end %>
+              </li>
+              <li>
+                <%= link_to admin_tags_path, class: 'nav-link text-white' do %>
+                  <i class="fa-solid fa-tags"></i> タグ
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white' do %>
+                  <i class="fas fa-sign-out-alt"></i> ログアウト
+                <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to posts_path, class: 'nav-link text-white' do %>
+                  <i class="fas fa-home"></i> Home
+                <% end %>
+              </li>
+              <li>
+                <%= link_to articles_path, class: 'nav-link text-white' do %>
+                  <i class="fa-solid fa-envelopes-bulk"></i> 記事
+                <% end %>
+              </li>
+              <li>
+                <%= link_to user_path(current_user), class: 'nav-link text-white' do %>
+                  <i class="fa-solid fa-user"></i> マイページ
+                <% end %>
+              </li>
+              <!-- 通知ボタン -->
+              <li class="dropdown">
+                <button class="btn dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa-solid fa-bell"></i> 通知
+                  <span class="badge rounded-pill bg-primary"><%= current_user.notifications.where(read: false).count %></span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <% if current_user.notifications.where(read: false).any? %>
+                    <small class="dropdown-item disabled">直近5件の未読の通知を表示しています</small>
+                    <% current_user.notifications.where(read: false).limit(5).order(created_at: :desc).each do |notification| %>
+                      <%= link_to notification.message, notification, method: :patch, class: "dropdown-item" %>
+                    <% end %>
+                  <% else %>
+                    <span class="dropdown-item disabled">未読の通知はありません</span>
+                  <% end %>
+                </div>
+              </li>
+              <!-- ここまで -->
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white' do %>
+                  <i class="fas fa-sign-out-alt"></i> ログアウト
+                <% end %>
+              </li>
+            <% end %>
 
           <% elsif admin_signed_in? %>
             <li>
