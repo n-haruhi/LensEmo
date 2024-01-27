@@ -1,5 +1,4 @@
 <div class="container">
-
   <h3>投稿一覧</h3>
   <div class="col mt-4">
     <table class="table">
@@ -14,7 +13,8 @@
       <% @posts.each do |post| %>
       <tbody>
         <tr>
-          <td><%= image_tag post.get_avatar(70,70), class:"rounded-circle"; %></td>
+          <td><%= image_tag post.get_avatar(70,70), class: "rounded-circle"; %></td>
+          <td><%= link_to post.user.username, user_path(post.user) %></td>
           <td><%= link_to post.title, post_path(post.id) %></td>
           <td class="actions text-center">
             <%= link_to "詳細", post_path(post.id), class: "btn btn-outline-info" %>
