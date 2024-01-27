@@ -17,6 +17,7 @@
         <div class="col text-right">
           <ul class="navbar-nav justify-content-end">
           <% if user_signed_in? %>
+            <!-- userがsign inした場合、そのユーザーがadmin権限をもつかどうかで表示を変える -->
             <% if current_user.admin? %>
               <li>
                 <%= link_to admin_root_path, class: 'nav-link text-white' do %>
