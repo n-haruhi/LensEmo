@@ -17,28 +17,6 @@
 
 
 
-  <div class="col-lg-7 my-3">
-    <h5><strong>内容</strong></h5>
-    <%= f.text_area :body, placeholder: "今日はどんなことがありましたか？", rows: 8, class: 'form-control' %>
-  </div>
-  <div class="col mt-3">
-    <h5><strong>タグ</strong></h5>
-    <!-- 設定したデフォルトタグをここで表示 -->
-    <div class='form-group'>
-      <div class="row">
-        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-          <div class="col-md-2">
-            <div class='form-check'>
-              <%= tag.label class: 'form-check-label' do %>
-                  <%= tag.check_box class: 'form-check-input' %>
-                  <i class="fa-solid fa-tags"></i> <%= tag.text %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
   <div class="col mt-3">
     <%= f.submit '投稿', class: "btn btn-outline-success btn-sm" %>
   </div>
