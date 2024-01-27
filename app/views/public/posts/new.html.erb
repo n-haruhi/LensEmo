@@ -10,15 +10,88 @@
     </ul>
   <% end %>
 
-  <%= form_with model: @post do |f| %>
+<%= form_with model: @post do |f| %>
   <div class="col-lg-3 my-3">
     <%= f.text_field :title, placeholder: "タイトル", class:'form-control' %>
   </div>
-
-
-
+  <div class="col my-3">
+    <h5><strong>気持ち</strong></h5>
+      <p class="mb-2">あなたの気持ちをきかせてください</p><br>
+    <%= f.label :emotion_joy, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "joy" %>
+      <%= image_tag("joy.png", width: 60, height: 60) %>
+      <p style="margin-left: 30px;">喜び</p>
+    <% end %>
+    <%= f.label :emotion_hope, class: "checkbox-image mx-2" do %>
+      <%= f.radio_button :emotion, "hope" %>
+      <%= image_tag("hope.png", width: 60, height: 60) %>
+      <p style="margin-left: 30px;">希望</p>
+    <% end %>
+    <%= f.label :emotion_happiness, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "happiness" %>
+      <%= image_tag("happiness.png", width: 60, height: 60) %>
+      <p style="margin-left: 30px;">幸福</p>
+    <% end %>
+    <%= f.label :emotion_love, class: "checkbox-image mx-2" do %>
+      <%= f.radio_button :emotion, "love" %>
+      <%= image_tag("love1.png", width: 60, height: 60) %>
+      <p style="margin-left: 30px;">愛情</p>
+    <% end %>
+    <%= f.label :emotion_calm, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "calm" %>
+      <%= image_tag("calm.png", width: 60, height: 60) %>
+      <p style="margin-left: 25px;">穏やか</p>
+    <% end %>
+    <%= f.label :emotion_anxiety, class: "checkbox-image mx-2" do %>
+      <%= f.radio_button :emotion, "anxiety" %>
+      <%= image_tag("anxiety.png", width: 60, height: 60) %>
+      <p style="margin-left: 30px;">不安</p>
+    <% end %>
+    <%= f.label :emotion_sadness, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "sadness" %>
+      <%= image_tag("sadness.png", width: 60, height: 60) %>
+      <p style="margin-left: 25px;">悲しみ</p>
+    <% end %>
+    <%= f.label :emotion_fear, class: "checkbox-image mx-2" do %>
+      <%= f.radio_button :emotion, "fear" %>
+      <%= image_tag("fear.png", width: 60, height: 60) %>
+      <p style="margin-left: 30px;">恐怖</p>
+    <% end %>
+    <%= f.label :emotion_disgust, class: "checkbox-image" do %>
+      <%= f.radio_button :emotion, "disgust" %>
+      <%= image_tag("disgust.png", width: 60, height: 60) %>
+      <p style="margin-left: 30px;">嫌悪</p>
+    <% end %>
+    <%= f.label :emotion_anger, class: "checkbox-image mx-2" do %>
+      <%= f.radio_button :emotion, "anger" %>
+      <%= image_tag("anger.png", width: 60, height: 60) %>
+      <p style="margin-left: 30px;">怒り</p>
+    <% end %>
+  </div>
+  <div class="col-lg-7 my-3">
+    <h5><strong>内容</strong></h5>
+    <%= f.text_area :body, placeholder: "今日はどんなことがありましたか？", rows: 8, class: 'form-control' %>
+  </div>
+  <div class="col mt-3">
+    <h5><strong>タグ</strong></h5>
+    <!-- 設定したデフォルトタグをここで表示 -->
+    <div class='form-group'>
+      <div class="row">
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+          <div class="col-md-2">
+            <div class='form-check'>
+              <%= tag.label class: 'form-check-label' do %>
+                  <%= tag.check_box class: 'form-check-input' %>
+                  <i class="fa-solid fa-tags"></i> <%= tag.text %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <div class="col mt-3">
     <%= f.submit '投稿', class: "btn btn-outline-success btn-sm" %>
   </div>
-
-<!--</div>-->
+  <% end %>
+</div>
