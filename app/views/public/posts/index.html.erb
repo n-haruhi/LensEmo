@@ -42,13 +42,17 @@
     </div>
 
     <div class="col-md-2" style="margin-top: 120px;">
+      <h5 class="mb-3">タグから探す</h5>
       <!-- タグ検索。タグ検索用の情報を送信する項目。タグが複数でも検索可能に-->
       <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
-
           <% Tag.all.each do |t| %>
-            <%= check_box :tag_ids, t.name %><%= t.name %><br>
+          <div class="col my-2">
+            <%= check_box :tag_ids, t.name %> <i class="fa-solid fa-tags"></i> <%= t.name %><br>
+          </div>
           <% end %>
+        <div class="col mt-3 mx-2">
           <%= submit_tag '検索' %>
+        </div>
       <% end %>
       <!-- ここまで -->
     </div>

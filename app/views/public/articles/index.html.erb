@@ -17,7 +17,7 @@
         <tr>
           <td><%= article.user.username %></td>
           <td><%= link_to article.title, article_path(article.id) %></td>
-          <td><%= article.body %></td>
+          <td><%= truncate(article.body, length: 25) %></td>
           <td class="actions text-center">
             <%= link_to "詳細", article_path(article.id), class: "btn btn-outline-info" %>
           </td>
