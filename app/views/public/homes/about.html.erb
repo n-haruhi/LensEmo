@@ -1,21 +1,27 @@
 <div class="container">
 
   <div class="col mt-5">
-    <div class="text-center" style="font-size:20px; background-image: url('<%= asset_path('about_bg.jpg') %>'); background-size: cover; height: 600px;" >
-      <div class="d-flex align-items-center justify-content-center" style="wifth: 900px; height: 600px;" >
-        <div style="background-color: rgba(255,255,255,.8);font-family:'Playfair Display', serif;" >
-          <p>ユーザー側のアバウトページ(内容,仮)<br>
-          LensEmo では、あなたが日々感じていることや出会ったもの、<br>
-          あなたの気持ちや悩み、喜び等、自由に記録することができます。<br>
-          さらに投稿につけたタグから同じような想いをもつ人の投稿をみることもできます。<br>
-          応援ボタンを押すとエールを送ることも！<br>
-          使い方にルールはありません。ここはあなたが自由に表現して良い場です。<br>
+    <div class="text-center" style="font-size:18px; background-image: url('<%= asset_path('about_bg.jpg') %>'); background-size: cover; height: 600px;" >
+      <div class="d-flex align-items-center justify-content-center" style="height: 600px;" >
+        <div style="background-color: rgba(255,255,255,.8); width: 760px; height: 370px;">
 
-          ではさっそくつかってみましょう！</p>
+          <p class="mt-3">
+            <i class="fa-solid fa-1"></i> . 投稿。あなたの思いや出会ったもの、悩み、喜びなど、<br>
+              とことん吐き出してもいいし、選択肢から感情を選ぶだけの簡単な記録もできるよ。</p>
 
-          <div class="col my-2 d-flex justify-content-center">
-            <%= link_to posts_path, class: 'btn btn-outline-light text-dark' do %>
-               <strong>はじめる </strong><i class="fa-regular fa-circle-play"></i>
+          <p><i class="fa-solid fa-2"></i> . タグ検索。投稿につけたタグから他の人の投稿を検索することができる！<br>
+            ただ自分の記録、つぶやきをしたいんです。それも素敵なつかい方。</p>
+
+          <p><i class="fa-solid fa-3"></i> . フォロー機能なし。DM、コメント機能なし。<br>
+              応援ボタンからエールを送ることはできる。</p>
+
+          <p><i class="fa-solid fa-4"></i> . メンタルケアに関する記事を受け取れる。<br>
+              あなたや大切な人の綻びのヒントが見つかるかもしれない。<br>
+              ここは そんな、ノイズの少ないコミュニティサイトです。</p>
+
+          <div class="col d-flex justify-content-center">
+            <%= link_to root_path, class: 'btn btn-outline-light text-dark' do %>
+              <i class="fa-solid fa-circle-chevron-left"></i> topページへ
             <% end %>
           </div>
 
