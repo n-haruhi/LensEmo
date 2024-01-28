@@ -1,8 +1,11 @@
 <div class="container">
-  <h3 class="col d-flex justify-content-center">案内人からの記事リスト</h3>
+  <h3>管理者　記事一覧</h3>
+  <div class="col text-right">
+    <%= link_to new_admin_article_path, class: "btn btn-sm btn-outline-primary" do %>
+      書く <i class="fa-solid fa-feather"></i>
+    <% end %>
+  </div>
   <div class="col my-3">
-    <p>ここにはメンタルケアに関する記事が届きます。あなたの綻びを繕うヒントが見つかるかもしれません。<br>
-      気になる記事があれば読んでみましょう。</p>
     <table class="table">
       <thead>
         <tr style="background: #dad2bf;">
@@ -19,7 +22,11 @@
           <td><%= link_to article.title, article_path(article.id) %></td>
           <td><%= truncate(article.body, length: 25) %></td>
           <td class="actions text-center">
-            <%= link_to "詳細", article_path(article.id), class: "btn btn-outline-info" %>
+            <%= link_to "詳細", admin_article_path(article.id), class: "btn btn-outline-info" %>
+            <!-- ログインしているユーザーと一致していたらボタンを表示 -->
+            <% if article.user == current_user %>
+              <%= link_to "編集", edit_admin_article_path(article.id), class: "btn btn-outline-secondary mx-1" %>
+            <% end %>
           </td>
         </tr>
       </tbody>

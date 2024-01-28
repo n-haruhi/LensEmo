@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # adminのルーティングをnamespaceでまとめる
   namespace :admin do
     root to: "homes#top"
+    #root to: "articles#index"
     resources :users, only: [:index, :show, :edit, :update]
     resources :tags, only: [:index, :new, :create, :edit, :update, :destroy]
     # notificationsリソースに対してdeliverという名前のアクションを生成する
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
     resources :notifications, only: [:new, :create, :send, :show, :index] do
       post 'deliver', on: :collection
     end
-    resources :favorites, only: [:index, :show, :destroy]
+    #resources :favorites, only: [:create, :destroy]
     resources :posts, only: [:index, :show]
     resources :articles, only: [:index, :new, :create, :show, :edit, :update]
   end

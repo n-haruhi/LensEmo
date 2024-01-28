@@ -12,7 +12,7 @@ class Notification < ApplicationRecord
     if notifiable_type === "Favorite"
       "投稿した「#{notifiable.post.title}」が#{notifiable.user.username}さんにいいねされました"
     elsif notifiable_type === "Article"
-      "#{notifiable.user.username}さんが#{notifiable.title}を投稿しました"
+      "#{notifiable.user.username}さんが「#{notifiable.title}」を投稿しました"
     end
   end
 

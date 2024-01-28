@@ -1,28 +1,30 @@
 <h3 class="title">プロフィール</h3>
-<table class="table table-borderless">
-  <tbody>
-    <tr>
-      <th><%= image_tag @user.get_avatar(100,100), class:"mt-3 rounded-circle"; %></th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>ユーザー名</th>
-      <td><%= user.username %></td>
-    </tr>
-    <tr>
-      <th>自己紹介</th>
-      <td><%= user.introduction %></td>
-    </tr>
-  </tbody>
-</table>
-<!-- ログインしているユーザーと一致していたらボタンを表示 -->
+  <div class="col my-4">
+    <%= image_tag @user.get_avatar(100,100), class: "rounded-circle"; %>
+  </div>
+  <div class="row">
+    <div class="col-md-4"><strong>ユーザー名</strong></div>
+    <div class="col mb-3 mx-2"><%= user.username %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"><strong>自己紹介</strong></div>
+    <div class="col mx-2 mb-5"><%= user.introduction %></div>
+  </div>
+
+<!-- 1. ログインしているユーザーと一致したら、2. ゲストユーザーでなければボタンを表示 -->
 <% if @user == current_user %>
-  <div class="col">
-    <%= link_to "編集", edit_user_path(@user), class:'btn btn-outline-secondary' %>
-  </div>
-  <div class="col my-2">
-    <%= link_to '応援した投稿', favorites_user_path(@user), class:'btn btn-outline-info' %>
-  </div>
+  <% if @user.email != 'guest@email.com' %>
+    <div class="col">
+      <%= link_to "プロフィール編集", edit_user_path(@user), class:'btn btn-outline-secondary' %>
+    </div>
+    <div class="col my-2">
+      <%= link_to '応援した投稿', favorites_user_path(@user), class:'btn btn-outline-info' %>
+    </div>
+  <% else %>
+    <div class="col my-2">
+      <%= link_to '応援した投稿', favorites_user_path(@user), class:'btn btn-outline-info' %>
+    </div>
+  <% end %>
 <% end %>
 <div class="col">
   <%=link_to "みんなの投稿へ", posts_path, class:'btn btn-outline-info' %>
