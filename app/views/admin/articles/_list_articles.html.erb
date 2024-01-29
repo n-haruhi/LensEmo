@@ -6,7 +6,7 @@
     <% end %>
   </div>
   <div class="col my-3">
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr style="background: #dad2bf;">
           <th>ニックネーム</th>
@@ -19,7 +19,7 @@
       <tbody>
         <tr>
           <td><%= article.user.username %></td>
-          <td><%= link_to article.title, article_path(article.id) %></td>
+          <td><%= link_to article.title, admin_article_path(article.id) %></td>
           <td><%= truncate(article.body, length: 25) %></td>
           <td class="actions text-center">
             <%= link_to "詳細", admin_article_path(article.id), class: "btn btn-outline-info" %>
