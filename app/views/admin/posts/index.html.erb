@@ -7,6 +7,7 @@
           <th></th>
           <th>ユーザー名</th>
           <th>タイトル</th>
+          <th>内容</th>
           <th></th>
         </tr>
       </thead>
@@ -16,9 +17,14 @@
           <td><%= image_tag post.user.get_avatar(70,70), class: "rounded-circle"; %></td>
           <td><%= link_to post.user.username, admin_user_path(post.user) %></td>
           <td><%= link_to post.title, admin_post_path(post.id) %></td>
+          <td><%= truncate(post.body, length: 30) %></td>
           <td class="actions text-center">
             <%= link_to "詳細", admin_post_path(post.id), class: "btn btn-outline-info" %>
-            <%= link_to "削除", post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-warning" %>
+            <!-- ログインしているユーザーと一致していたらボタンを表示 -->
+            <% if post.user == current_user %>
+              <%= link_to "編集", edit_admin_article_path(article.id), class: "btn btn-outline-secondary mx-1" %>
+            <% end %>
+            <%= link_to "削除", admin_post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-warning" %>
           </td>
         </tr>
       </tbody>

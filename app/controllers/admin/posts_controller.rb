@@ -11,6 +11,13 @@ class Admin::PostsController < ApplicationController
     @user = @post.user
   end
 
+  def destroy
+    post = Post.find(params[:id])
+    if post.destroy
+      redirect_to '/admin/posts', notice: "投稿が削除されました。"
+    end
+  end
+
   private
   # admin権限をもつユーザー以外でアクションしようとするとトップページに遷移する
   def if_not_admin
