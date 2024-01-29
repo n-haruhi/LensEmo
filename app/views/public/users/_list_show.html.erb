@@ -1,7 +1,8 @@
-<h3 class="title">プロフィール</h3>
-  <div class="col my-4">
-    <%= image_tag @user.get_avatar(100,100), class: "rounded-circle"; %>
-  </div>
+<h4 class="border d-flex justify-content-center" style="background: #dad2bf;">- profile -</h4>
+<div class="col my-4">
+  <%= image_tag @user.get_avatar(100,100), class: "rounded-circle"; %>
+</div>
+<div class="col">
   <div class="row">
     <div class="col-md-4"><strong>ユーザー名</strong></div>
     <div class="col mb-3 mx-2"><%= user.username %></div>
@@ -10,22 +11,24 @@
     <div class="col-md-4"><strong>自己紹介</strong></div>
     <div class="col mx-2 mb-5"><%= user.introduction %></div>
   </div>
+</div>
 
-<!-- 1. ログインしているユーザーと一致したら、2. ゲストユーザーでなければボタンを表示 -->
-<% if @user == current_user %>
-  <% if @user.email != 'guest@email.com' %>
-    <div class="col">
-      <%= link_to "プロフィール編集", edit_user_path(@user), class:'btn btn-outline-secondary' %>
-    </div>
-    <div class="col my-2">
-      <%= link_to '応援した投稿', favorites_user_path(@user), class:'btn btn-outline-info' %>
-    </div>
-  <% else %>
-    <div class="col my-2">
-      <%= link_to '応援した投稿', favorites_user_path(@user), class:'btn btn-outline-info' %>
-    </div>
+  <!-- 1. ログインしているユーザーと一致したら、2. ゲストユーザーでなければボタンを表示 -->
+  <% if @user == current_user %>
+    <% if @user.email != 'guest@email.com' %>
+      <div class="col">
+        <%= link_to "プロフィール編集", edit_user_path(@user), class:'btn btn-outline-secondary' %>
+      </div>
+      <div class="col my-2">
+        <%= link_to '応援した投稿', favorites_user_path(@user), class:'btn btn-outline-info' %>
+      </div>
+    <% else %>
+      <div class="col my-2">
+        <%= link_to '応援した投稿', favorites_user_path(@user), class:'btn btn-outline-info' %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+  
 <div class="col">
   <%=link_to "みんなの投稿へ", posts_path, class:'btn btn-outline-info' %>
 </div>

@@ -1,30 +1,25 @@
 <div class="container">
-  <h3 class="col d-flex justify-content-center">案内人からの記事リスト</h3>
+  <h4 class="border d-flex justify-content-center" style="background: #dad2bf;">- List of articles about mental care -</h4>
   <div class="col my-3">
     <p>ここにはメンタルケアに関する記事が届きます。あなたの綻びを繕うヒントが見つかるかもしれません。<br>
       気になる記事があれば読んでみましょう。</p>
-    <table class="table">
-      <thead>
-        <tr style="background: #dad2bf;">
-          <th>ニックネーム</th>
-          <th>タイトル</th>
-          <th>本文</th>
-          <th></th>
-        </tr>
-      </thead>
-      <% @articles.each do |article| %>
-      <tbody>
-        <tr>
-          <td><%= article.user.username %></td>
-          <td><%= link_to article.title, article_path(article.id) %></td>
-          <td><%= truncate(article.body, length: 25) %></td>
-          <td class="actions text-center">
-            <%= link_to "詳細", article_path(article.id), class: "btn btn-outline-info" %>
-          </td>
-        </tr>
-      </tbody>
-      <% end %>
-    </table>
+
+    <% @articles.each do |article| %>
+      <div class="card w-100 mb-2">
+        <div class="card-body">
+          <!-- カード全体にリンクを貼る -->
+          <%= link_to article_path(article.id), class: "stretched-link" do %>
+            <div class="row mb-1">
+              <div class="col card-sub-title text-left text-dark"><strong><%= article.title %></strong></div>
+              <div class="col card-title text-right text-secondary">
+                <i class="fa-regular fa-clock"></i> <%= article.created_at.strftime('%Y/%m/%d') %>
+              </div>
+            </div>
+            <p class="card-text text-dark" style="margin-left: 15px;"><%= truncate(article.body, length: 125) %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
   <div class="col d-flex justify-content-center" >
     <%= paginate @articles %>
