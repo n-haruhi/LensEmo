@@ -7,7 +7,7 @@
         <%= link_to post_path(post.id), class: "stretched-link" do %>
           <div class="row">
             <div class="col card-title text-left">
-              <%= image_tag post.get_avatar(55,55), class: "mb-2 rounded-circle" %>
+              <%= image_tag post.user.get_avatar(55,55), class: "mb-2 rounded-circle" %>
               <strong><%= link_to post.user.username, user_path(post.user), class: "mx-2 text-dark" %></strong>
             </div>
             <div class="col card-title text-right text-secondary">
