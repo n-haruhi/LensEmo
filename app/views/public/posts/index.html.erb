@@ -1,47 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 mt-2">
-      <h3 class="d-flex justify-content-center">みんなの投稿</h3>
-      <div class="col text-right">
-        <%= link_to new_post_path, class: "btn btn-sm btn-outline-primary" do %>
-          書く <i class="fa-solid fa-feather"></i>
-        <% end %>
-      </div>
-      <div class="col my-3">
-        <table class="table">
-          <thead>
-            <tr style="background: #dad2bf;">
-              <th></th>
-              <th>ユーザー名</th>
-              <th>タイトル</th>
-              <th></th>
-            </tr>
-          </thead>
-          <% @posts.each do |post| %>
-          <tbody>
-            <tr>
-              <td><%= image_tag post.get_avatar(70,70), class: "rounded-circle"; %></td>
-              <td><%= link_to post.user.username, user_path(post.user) %></td>
-              <td><%= link_to post.title, post_path(post.id) %></td>
-              <td class="actions text-center">
-                <%= link_to "詳細", post_path(post.id), class: "btn btn-outline-info" %>
-                <!-- ログインしているユーザーと一致していたらボタンを表示 -->
-                <% if post.user == current_user %>
-                  <%= link_to "編集", edit_post_path(post.id), class: "btn btn-outline-secondary mx-1" %>
-                  <%= link_to "削除", post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-warning" %>
-                <% end %>
-              </td>
-            </tr>
-          </tbody>
-          <% end %>
-        </table>
-      </div>
+    <div class="offset-1 col-md-8 mt-2">
+      <h4 class="border d-flex justify-content-center" style="background: #dad2bf;">- time line -</h4>
+        <!-- 投稿一覧 -->
+        <%= render "public/posts/list", posts: @posts %>
       <div class="col d-flex justify-content-center">
         <%= paginate @posts %>
       </div>
     </div>
 
-    <div class="col-md-2" style="margin-top: 120px;">
+    <div class="offset-1 col-md-2 mt-5">
       <h5 class="mb-3">タグから探す</h5>
       <!-- タグ検索。タグ検索用の情報を送信する項目。タグが複数でも検索可能に-->
       <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
