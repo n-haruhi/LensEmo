@@ -10,7 +10,7 @@
   </div>
   <div class="col my-3">
     <h5><strong>本文</strong></h5>
-    <p><%= @article.body %></p>
+    <p><%= safe_join(@article.body.split("\n"),tag(:br)) %></p>
   </div>
   <div class="col my-3">
     <p>投稿日時：<%= @article.created_at.strftime('%Y/%m/%d') %></p>
