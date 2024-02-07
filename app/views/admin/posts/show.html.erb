@@ -16,7 +16,8 @@
       </div>
 
       <div class="col text-right">
-        <%= link_to "削除", admin_post_path(@post), method: :delete, class: "btn btn-outline-warning" %>
+        <!-- data-confirmを用いて削除確認ダイアログを表示 -->
+        <%= link_to "削除", admin_post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-warning" %>
       </div>
     </div>
 
