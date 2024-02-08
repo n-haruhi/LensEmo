@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.page(params[:page]).per(10).order(created_at: :desc)
     # タグのAND検索
     if params[:tag_ids] # 存在するならタグの検索
       @posts = []
