@@ -19,7 +19,8 @@
         <!-- ログインしているユーザーと一致していたらボタンを表示 -->
         <% if @post.user == current_user %>
           <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-outline-secondary" %>
-          <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-outline-warning" %>
+          <!-- data-confirmを用いて削除確認ダイアログを表示 -->
+          <%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-warning" %>
         <% end %>
       </div>
     </div>

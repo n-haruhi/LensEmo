@@ -5,7 +5,7 @@ class Tag < ApplicationRecord
   # tagsテーブルから中間テーブルを介してpostsテーブルへ
   has_many :posts, through: :post_tag_relations, dependent: :destroy
 
-  # nameが存在すること
-  validates :name, presence: true
+  # nameが存在すること、一意であること
+  validates :name, presence: true, uniqueness: true
 
 end
